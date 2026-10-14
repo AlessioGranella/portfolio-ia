@@ -89,7 +89,7 @@ em{font-style:italic;color:var(--acc)}
 .intro-mono{width:.9em;height:auto;color:var(--rust);opacity:0;transform:translateY(30%) scale(.8);transition:opacity .8s var(--ease),transform 1s var(--ease)}
 .intro.go .intro-mono{opacity:1;transform:none}
 .intro-word{display:flex}
-.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links{display:flex;gap:clamp(14px,1.8vw,30px);align-items:center}
 .nav-links a{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em}
 
 /* BOTTONI con testo che scorre */
@@ -150,6 +150,16 @@ em{font-style:italic;color:var(--acc)}
 .abs-grid{max-width:900px;margin:0 auto;padding:0 var(--gut);text-align:center}
 .abs h2{font-size:clamp(2.6rem,6vw,6rem);line-height:.95;margin:22px 0 28px}
 .abs-text p{font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.45;color:var(--mut);max-width:52ch;margin:0 auto 40px}
+
+/* PRODUTTORI ARBOREA */
+.pa-sheets{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px);padding:clamp(60px,7vw,100px) var(--gut) 0}
+.pa-sheets .out-img.wide{aspect-ratio:16/10}
+.pa-sheets .out-img.wide img{height:100%;object-fit:cover}
+.pa-how{padding:clamp(70px,8vw,110px) var(--gut) 0}
+.pa-how ol{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);counter-reset:pa}
+.pa-how li{counter-increment:pa;padding:26px 24px 10px 0;color:var(--mut);font-size:1rem;line-height:1.5}
+.pa-how li::before{content:"0" counter(pa);display:block;font-size:clamp(2rem,3vw,2.8rem);font-weight:300;letter-spacing:-.04em;color:var(--rust);margin-bottom:14px}
+.pa-how li b{display:block;color:var(--fg);font-weight:400;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:8px}
 
 /* BRAND BOOK DROP */
 .bbp{margin:0;width:clamp(300px,38vw,600px);scroll-snap-align:start;user-select:none}
@@ -312,6 +322,8 @@ em{font-style:italic;color:var(--acc)}
   .sb-nav{display:none}
   .beat{width:78vw}
   .bbp{width:82vw}
+  .pa-sheets{grid-template-columns:1fr}
+  .pa-how ol{grid-template-columns:1fr}
   .ab-block{grid-template-columns:1fr}
   .case-grid.rev .case-video{order:-1}
   .notes li{grid-template-columns:1fr;gap:4px}
@@ -358,6 +370,7 @@ em{font-style:italic;color:var(--acc)}
   <nav class="nav-links">
     <a href="#design-system">OpenEconomics</a>
     <a href="#drop">Drop</a>
+    <a href="#arborea">Arborea</a>
     <a href="#jet-set">Jet Set</a>
     <a href="#tennis">Tennis</a>
     <a href="#audiovisivo">Audiovisivo</a>
@@ -494,8 +507,60 @@ em{font-style:italic;color:var(--acc)}
     </div>
   </section>
 
+  <!-- CASO STUDIO: PRODUTTORI ARBOREA -->
+  <section class="sec case" id="arborea" data-theme="light">
+    <div class="sec-head rv"><span class="label acc">Caso studio · Produttori Arborea</span><span class="label">(Design system · Schede prodotto)</span></div>
+    <h2 class="sec-title rv">Produttori Arborea: un design system e i template per le schede prodotto.</h2>
+    <div class="mock-hero">
+      <img src="assets/img/pa-mock-laptop.webp" alt="Portatile su un tavolo di legno davanti a una finestra sulla campagna, con la home del design system di Produttori Arborea">
+    </div>
+    <div class="ds-intro">
+      <div class="rv">
+        <p class="case-lead">Produttori Arborea è una cooperativa agroalimentare di Arborea, in Sardegna, con più marchi per mercati diversi. Il design system traduce il brandbook ufficiale in colori, caratteri, icone, illustrazioni e componenti. I template portano quelle regole nelle schede prodotto, che escono sempre con la stessa impaginazione.</p>
+        <p class="roles"><b>AI:</b> traduce il brandbook in token e componenti, vettorializza le illustrazioni al tratto, compila le schede su Canva e misura ogni testo con i caratteri del cliente. <b>Io:</b> leggo il brandbook e fisso le regole, approvo i master, correggo le schede e scrivo i giudizi che l'AI rilegge prima di ogni scheda nuova.</p>
+      </div>
+      <dl class="facts rv">
+        <div><dt class="label">Cliente</dt><dd>Produttori Arborea, cooperativa agroalimentare</dd></div>
+        <div><dt class="label">Norma</dt><dd>Il brandbook ufficiale, 46 pagine</dd></div>
+        <div><dt class="label">Asset</dt><dd>12 colori, 16 icone, 32 illustrazioni al tratto</dd></div>
+        <div><dt class="label">Template</dt><dd>Master Canva per schede, volantini e caroselli</dd></div>
+      </dl>
+    </div>
+
+    <div class="ds-outputs">
+      <figure class="out out-wide rv">
+        <div class="out-img"><img src="assets/img/pa-mock-tablet.webp" alt="Tablet su un tavolo di cucina in legno con la palette di dodici colori del design system Produttori Arborea" loading="lazy"></div>
+        <figcaption><span class="label acc">01 · Design system</span><h3>Dodici colori con un nome proprio.</h3><p>Arancio, foglia, oro, pomodoro, campagna, sabbia: ogni colore del brandbook ha un nome, un valore e un uso. Il fondo pagina è sabbia, non bianco.</p></figcaption>
+      </figure>
+    </div>
+
+    <div class="pa-sheets">
+      <figure class="out rv">
+        <div class="out-img wide"><img src="assets/img/pa-mock-schede.webp" alt="Due schede prodotto Meridoro stampate su un tavolo di legno: Erba medica essiccata in campo e Linea di prodotti da cortile" loading="lazy"></div>
+        <figcaption><span class="label acc">02 · Scheda prodotto A5</span><h3>Una scheda per ogni prodotto, dallo stesso master.</h3><p>Erba medica essiccata in campo accanto alla linea da cortile: griglia, caratteri e colori restano quelli approvati, cambiano testi, foto e numero di voci.</p></figcaption>
+      </figure>
+      <figure class="out rv">
+        <div class="out-img wide"><img src="assets/img/pa-mock-linea.webp" alt="Le due pagine della scheda linea Meridoro, Linea di prodotti da cortile, stampate e affiancate" loading="lazy"></div>
+        <figcaption><span class="label acc">03 · Scheda linea</span><h3>Quando i prodotti sono più di uno, le pagine diventano due.</h3><p>Introduzione, miscele, ingredienti e valori nutrizionali: il master per le linee di prodotto si allunga senza cambiare regole.</p></figcaption>
+      </figure>
+    </div>
+
+    <div class="pa-how rv">
+      <span class="label acc">(Come nasce una scheda)</span>
+      <ol>
+        <li><b>Si duplica il master.</b> Ogni scheda è una copia del master approvato su Canva. Il master non si modifica mai.</li>
+        <li><b>Si misurano i testi.</b> Uno script misura ogni testo con i caratteri del cliente, tarati sul render di Canva, prima di impaginare.</li>
+        <li><b>Si verifica l'ingombro.</b> Se un testo sfora, l'AI propone versioni più corte e me le fa scegliere. I dati tecnici arrivano solo dal cliente.</li>
+        <li><b>Si giudica il risultato.</b> L'AI guarda il render con le mie correzioni precedenti, scritte in un file che rilegge ogni volta.</li>
+      </ol>
+    </div>
+    <div class="ds-links rv">
+      <a class="btn btn-line" href="https://alessiogranella.github.io/produttori-arborea-design-system/" target="_blank" rel="noopener"><span class="lab"><span>Apri il design system online</span><span>Apri il design system online</span></span><span class="arr">→</span></a>
+    </div>
+  </section>
+
   <!-- CASO STUDIO: JET SET -->
-  <section class="sec case" id="jet-set" data-theme="light">
+  <section class="sec case" id="jet-set" data-theme="dark">
     <div class="sec-head rv"><span class="label acc">Caso studio · Per l'agenzia Drop</span><span class="label">(Video AI · 9:16)</span></div>
     <h2 class="sec-title rv">Acqua di Sardegna, Jet Set. Un video generato con l'AI, dalla modella al profumo.</h2>
     <div class="case-grid">
@@ -539,7 +604,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- VIDEO TENNIS -->
-  <section class="sec case" id="tennis" data-theme="dark">
+  <section class="sec case" id="tennis" data-theme="light">
     <div class="sec-head rv"><span class="label acc">Video · Per OpenEconomics e FITP</span><span class="label">(9:16 · 13 secondi)</span></div>
     <h2 class="sec-title rv">Tennis e padel in Italia: i dati entrano sul colpo di palla.</h2>
     <div class="case-grid rev">
@@ -566,7 +631,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- VIDEO AUDIOVISIVO -->
-  <section class="sec case" id="audiovisivo" data-theme="light">
+  <section class="sec case" id="audiovisivo" data-theme="dark">
     <div class="sec-head rv"><span class="label acc">Video · Per OpenEconomics e APA</span><span class="label">(16:9 · 1:14)</span></div>
     <h2 class="sec-title rv">Lo studio sul settore audiovisivo italiano, raccontato in nove scene.</h2>
     <div class="wide-wrap">
@@ -623,7 +688,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- METODO -->
-  <section class="sec" id="metodo" data-theme="dark">
+  <section class="sec" id="metodo" data-theme="light">
     <div class="sec-head rv"><span class="label acc">Come lavoro</span><span class="label">(04)</span></div>
     <h2 class="sec-title rv">Dove lavora l'AI e dove lavoro io.</h2>
     <div class="tiles rv">
@@ -636,7 +701,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- FRASE -->
-  <section class="statement" data-theme="light">
+  <section class="statement" data-theme="dark">
     <div class="statement-sticky">
       <span class="label acc">(Chi sono)</span>
       <p class="statement-text" data-words>Sono un designer di brand. Lavoro da più di dieci anni tra startup, PMI e agenzie, dalla Sardegna. Uso l'AI ogni giorno come *strumento:* la mano che guida e la testa che pensa restano le *mie.*</p>
