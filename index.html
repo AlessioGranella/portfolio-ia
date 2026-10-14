@@ -151,6 +151,13 @@ em{font-style:italic;color:var(--acc)}
 .abs h2{font-size:clamp(2.6rem,6vw,6rem);line-height:.95;margin:22px 0 28px}
 .abs-text p{font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.45;color:var(--mut);max-width:52ch;margin:0 auto 40px}
 
+/* BRAND BOOK DROP */
+.bbp{margin:0;width:clamp(300px,38vw,600px);scroll-snap-align:start;user-select:none}
+.bbp img{width:100%;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.28);transition:transform .8s var(--ease)}
+.bbp:hover img{transform:translateY(-6px)}
+.bbp figcaption{margin-top:16px}
+#drop .sb-head{padding-top:clamp(80px,9vw,120px)}
+
 /* CASO STUDIO DESIGN SYSTEM */
 .mock-hero{margin:0 var(--gut);border-radius:22px;overflow:hidden;aspect-ratio:16/9;background:var(--soft)}
 .mock-hero img{width:100%;height:100%;object-fit:cover;transform:scale(var(--z,1.14));transform-origin:50% 40%;will-change:transform}
@@ -304,6 +311,7 @@ em{font-style:italic;color:var(--acc)}
   .facts-4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sb-nav{display:none}
   .beat{width:78vw}
+  .bbp{width:82vw}
   .ab-block{grid-template-columns:1fr}
   .case-grid.rev .case-video{order:-1}
   .notes li{grid-template-columns:1fr;gap:4px}
@@ -348,8 +356,8 @@ em{font-style:italic;color:var(--acc)}
     <span>alessio granella</span>
   </a>
   <nav class="nav-links">
-    <a href="#lavori">Lavori</a>
-    <a href="#design-system">Design system</a>
+    <a href="#design-system">OpenEconomics</a>
+    <a href="#drop">Drop</a>
     <a href="#jet-set">Jet Set</a>
     <a href="#tennis">Tennis</a>
     <a href="#audiovisivo">Audiovisivo</a>
@@ -435,8 +443,59 @@ em{font-style:italic;color:var(--acc)}
     </div>
   </section>
 
+  <!-- CASO STUDIO: DROP -->
+  <section class="sec case" id="drop" data-theme="dark">
+    <div class="sec-head rv"><span class="label acc">Caso studio · Drop</span><span class="label">(Brand book · Design system · Sito)</span></div>
+    <h2 class="sec-title rv">Drop: brand book, design system e sito, progettati con l'AI.</h2>
+    <div class="mock-hero">
+      <img src="assets/img/drop-mock-book.webp" alt="Brand book Drop stampato, appoggiato su un tavolo di legno accanto a una matita e a una spiga di grano">
+    </div>
+    <div class="ds-intro">
+      <div class="rv">
+        <p class="case-lead">Drop è l'agenzia di comunicazione e marketing per il settore primario. Con l'AI ho scritto e impaginato il brand book, poi l'ho tradotto in un design system, e da quel sistema ho disegnato il sito.</p>
+        <p class="roles"><b>AI:</b> impagina il brand book, trasforma le regole in token e componenti, scrive il codice della libreria e del sito. <b>Io:</b> decido le regole del sistema (due colori, un solo carattere, nessuna icona e la fotografia al loro posto), scelgo le immagini e rivedo ogni pagina.</p>
+      </div>
+      <dl class="facts rv">
+        <div><dt class="label">Cliente</dt><dd>Drop, marketing per il settore primario</dd></div>
+        <div><dt class="label">Brand book</dt><dd>43 pagine, edizione 2026</dd></div>
+        <div><dt class="label">Regole</dt><dd>Due colori, un carattere, nessuna icona</dd></div>
+        <div><dt class="label">Sito</dt><dd>Homepage progettata e disegnata con l'AI</dd></div>
+      </dl>
+    </div>
+
+    <div class="sb-head rv">
+      <div><span class="label acc">(Brand book)</span><h3>Dalla missione alle applicazioni, in 43 pagine.</h3></div>
+      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Pagina precedente">←</button><button type="button" class="sb-next" aria-label="Pagina successiva">→</button></div>
+    </div>
+    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
+      <div class="sb-track">
+          <figure class="bbp"><img src="assets/img/drop-bb-08.webp" alt="Brand book Drop, pagina 8: La missione" loading="lazy"><figcaption class="label">(p. 8) La missione</figcaption></figure>
+          <figure class="bbp"><img src="assets/img/drop-bb-16.webp" alt="Brand book Drop, pagina 16: Il marchio" loading="lazy"><figcaption class="label">(p. 16) Il marchio</figcaption></figure>
+          <figure class="bbp"><img src="assets/img/drop-bb-26.webp" alt="Brand book Drop, pagina 26: Due colori" loading="lazy"><figcaption class="label">(p. 26) Due colori</figcaption></figure>
+          <figure class="bbp"><img src="assets/img/drop-bb-32.webp" alt="Brand book Drop, pagina 32: Otto pesi di Sora" loading="lazy"><figcaption class="label">(p. 32) Otto pesi di Sora</figcaption></figure>
+          <figure class="bbp"><img src="assets/img/drop-bb-36.webp" alt="Brand book Drop, pagina 36: La firma concentrica" loading="lazy"><figcaption class="label">(p. 36) La firma concentrica</figcaption></figure>
+          <figure class="bbp"><img src="assets/img/drop-bb-40.webp" alt="Brand book Drop, pagina 40: Il brand nello spazio" loading="lazy"><figcaption class="label">(p. 40) Il brand nello spazio</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="ds-outputs">
+      <figure class="out out-wide rv">
+        <div class="out-img"><img src="assets/img/drop-mock-laptop.webp" alt="Portatile su un tavolo di legno davanti a una finestra sui campi, con la homepage di Drop" loading="lazy"></div>
+        <figcaption><span class="label acc">01 · Sito</span><h3>La homepage di Drop.</h3><p>«Parliamo la lingua del settore primario»: manifesto, servizi, settori, numeri e casi, disegnati e scritti in codice con l'AI a partire dal design system.</p></figcaption>
+      </figure>
+      <figure class="out rv">
+        <div class="out-img"><img src="assets/img/drop-mock-monitor.webp" alt="Monitor in uno studio luminoso con la libreria del design system Drop, pagina Colore" loading="lazy"></div>
+        <figcaption><span class="label acc">02 · Design system</span><h3>La libreria del brand.</h3><p>Colore, tipografia, marchio, pattern goccia, voce e componenti, con i valori presi dal brand book.</p></figcaption>
+      </figure>
+      <figure class="out rv">
+        <div class="out-img"><img src="assets/img/drop-mock-phone.webp" alt="Mano che tiene un telefono davanti a un campo di grano, con il sito Drop in versione mobile" loading="lazy"></div>
+        <figcaption><span class="label acc">03 · Mobile</span><h3>Lo stesso sito, in tasca.</h3><p>Il sito si adatta al telefono con le stesse regole: Sora, teal e arancione.</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- CASO STUDIO: JET SET -->
-  <section class="sec case" id="jet-set" data-theme="dark">
+  <section class="sec case" id="jet-set" data-theme="light">
     <div class="sec-head rv"><span class="label acc">Caso studio · Per l'agenzia Drop</span><span class="label">(Video AI · 9:16)</span></div>
     <h2 class="sec-title rv">Acqua di Sardegna, Jet Set. Un video generato con l'AI, dalla modella al profumo.</h2>
     <div class="case-grid">
@@ -480,7 +539,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- VIDEO TENNIS -->
-  <section class="sec case" id="tennis" data-theme="light">
+  <section class="sec case" id="tennis" data-theme="dark">
     <div class="sec-head rv"><span class="label acc">Video · Per OpenEconomics e FITP</span><span class="label">(9:16 · 13 secondi)</span></div>
     <h2 class="sec-title rv">Tennis e padel in Italia: i dati entrano sul colpo di palla.</h2>
     <div class="case-grid rev">
@@ -507,7 +566,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- VIDEO AUDIOVISIVO -->
-  <section class="sec case" id="audiovisivo" data-theme="dark">
+  <section class="sec case" id="audiovisivo" data-theme="light">
     <div class="sec-head rv"><span class="label acc">Video · Per OpenEconomics e APA</span><span class="label">(16:9 · 1:14)</span></div>
     <h2 class="sec-title rv">Lo studio sul settore audiovisivo italiano, raccontato in nove scene.</h2>
     <div class="wide-wrap">
@@ -564,7 +623,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- METODO -->
-  <section class="sec" id="metodo" data-theme="light">
+  <section class="sec" id="metodo" data-theme="dark">
     <div class="sec-head rv"><span class="label acc">Come lavoro</span><span class="label">(04)</span></div>
     <h2 class="sec-title rv">Dove lavora l'AI e dove lavoro io.</h2>
     <div class="tiles rv">
@@ -577,7 +636,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- FRASE -->
-  <section class="statement" data-theme="dark">
+  <section class="statement" data-theme="light">
     <div class="statement-sticky">
       <span class="label acc">(Chi sono)</span>
       <p class="statement-text" data-words>Sono un designer di brand. Lavoro da più di dieci anni tra startup, PMI e agenzie, dalla Sardegna. Uso l'AI ogni giorno come *strumento:* la mano che guida e la testa che pensa restano le *mie.*</p>
@@ -746,15 +805,17 @@ em{font-style:italic;color:var(--acc)}
     }), {threshold: .35}).observe(vid);
   });
 
-  // storyboard: trascina, frecce
-  const sb = $('.sb');
-  let sbDown = false, sbX = 0, sbL = 0, sbMoved = false;
-  sb.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; sbDown = true; sbMoved = false; sbX = e.clientX; sbL = sb.scrollLeft; });
-  addEventListener('pointermove', e => { if (!sbDown) return; const d = e.clientX - sbX; if (Math.abs(d) > 4) { sbMoved = true; sb.classList.add('drag'); } sb.scrollLeft = sbL - d; });
-  addEventListener('pointerup', () => { sbDown = false; sb.classList.remove('drag'); });
-  const step = () => $('.beat', sb).offsetWidth + 24;
-  $('.sb-prev').addEventListener('click', () => sb.scrollBy({left: -step(), behavior: 'smooth'}));
-  $('.sb-next').addEventListener('click', () => sb.scrollBy({left: step(), behavior: 'smooth'}));
+  // strisce trascinabili (storyboard, brand book): trascina, frecce
+  $$('.sb').forEach(sb => {
+    let down = false, sx = 0, sl = 0;
+    sb.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl = sb.scrollLeft; });
+    addEventListener('pointermove', e => { if (!down) return; const d = e.clientX - sx; if (Math.abs(d) > 4) sb.classList.add('drag'); sb.scrollLeft = sl - d; });
+    addEventListener('pointerup', () => { down = false; sb.classList.remove('drag'); });
+    const head = sb.previousElementSibling;
+    const step = () => sb.querySelector('.sb-track > *').offsetWidth + 24;
+    $('.sb-prev', head).addEventListener('click', () => sb.scrollBy({left: -step(), behavior: 'smooth'}));
+    $('.sb-next', head).addEventListener('click', () => sb.scrollBy({left: step(), behavior: 'smooth'}));
+  });
 
   // prima e dopo
   const ab = $('.ab'), abIn = $('input', ab), abBefore = $('.ab-before', ab), abAfter = $('.ab-after', ab);
@@ -779,7 +840,7 @@ em{font-style:italic;color:var(--acc)}
   const exp = $('.expand'), media = $('.expand-media');
   const stmt = $('.statement');
   let mqX = 0, lastY = scrollY, vel = 0;
-  const nav = $('.nav'), spins = $$('[data-spin]'), procs = $$('.proc-img'), mock = $('.mock-hero'), mockImg = $('.mock-hero img');
+  const nav = $('.nav'), spins = $$('[data-spin]'), procs = $$('.proc-img'), mocks = $$('.mock-hero').map(box => ({box, img: $('img', box)}));
 
   const loop = () => {
     const y = scrollY;
@@ -807,8 +868,7 @@ em{font-style:italic;color:var(--acc)}
       words.forEach((w, i) => w.classList.toggle('on', i < lit));
 
       // mockup del design system: la camera si allontana mentre scorri
-      const mr = mock.getBoundingClientRect();
-      mockImg.style.setProperty('--z', 1.14 - .14 * clamp(1 - (mr.top) / innerHeight));
+      mocks.forEach(m => m.img.style.setProperty('--z', 1.14 - .14 * clamp(1 - m.box.getBoundingClientRect().top / innerHeight)));
 
       // screenshot del processo: crescono entrando
       procs.forEach(b => {
