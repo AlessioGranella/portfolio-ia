@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio IA · Alessio Granella</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Portfolio di lavori di brand realizzati con l'intelligenza artificiale: design system, video, infografiche e pagine web.">
+<link rel="icon" type="image/svg+xml" href="assets/ag-logo-round.svg">
+<style>
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Light.otf') format('opentype');font-weight:300;font-display:swap}
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Regular.otf') format('opentype');font-weight:400;font-display:swap}
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+@font-face{font-family:Augustina;src:url('assets/fonts/AugustinaSlab-Italic.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#f0efee; --soft:#dfdad5; --ink:#1a2b1e; --verde:#243728; --rust:#d14124;
+  --muschio:#8faf90; --blunero:#0f1821;
+  --gut:clamp(16px,3vw,40px); --ease:cubic-bezier(.2,.7,.1,1); --ease-io:cubic-bezier(.76,0,.24,1);
+  /* tema chiaro */
+  --bg:var(--paper); --fg:var(--ink); --mut:#5d6a60; --line:#c8c6c2; --acc:var(--rust);
+}
+body.theme-dark{--bg:var(--ink); --fg:#e4e8e4; --mut:#adb8ae; --line:#3c4a3f; --acc:var(--muschio)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Augustina,Georgia,serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .7s var(--ease),color .7s var(--ease)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+h2,h3{font-weight:300;letter-spacing:-.035em;text-wrap:balance}
+em{font-style:italic;color:var(--acc)}
+.wrap{padding-inline:var(--gut)}
+.label{font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--mut)}
+.label.acc{color:var(--acc)}
+.js-only{display:none}
+.js .js-only{display:block}
+
+/* INTRO */
+.intro{position:fixed;inset:0;z-index:100;pointer-events:none;display:none}
+.js .intro{display:block}
+.intro-bars{position:absolute;inset:0;display:flex}
+.intro-bars i{flex:1;background:var(--ink);margin-right:-1px;transition:transform 1s var(--ease-io)}
+.intro-bars i:nth-child(2){transition-delay:.06s}.intro-bars i:nth-child(3){transition-delay:.12s}.intro-bars i:nth-child(4){transition-delay:.18s}.intro-bars i:nth-child(5){transition-delay:.24s}
+.intro-in{position:absolute;inset:0;transition:opacity .4s}
+.intro-logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--paper);font-size:clamp(40px,8vw,130px);font-weight:300;letter-spacing:-.04em}
+.clip{display:inline-flex;overflow:hidden;padding:.06em 0 .12em}
+.clip > span{display:inline-block;transform:translateY(115%);transition:transform .9s var(--ease)}
+.intro.go .intro-logo .clip > span{transform:none}
+.intro-meta{position:absolute;left:var(--gut);right:var(--gut);bottom:clamp(24px,4vw,48px);display:flex;justify-content:space-between;align-items:flex-end;color:var(--paper)}
+.intro-meta .label{color:#adb8ae;line-height:1.9}
+.intro-count{font-size:clamp(48px,6vw,96px);font-weight:300;line-height:.86;font-variant-numeric:tabular-nums;color:var(--rust)}
+.intro-line{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--rust);transform-origin:0;transform:scaleX(0)}
+.intro.out .intro-in{opacity:0}
+.intro.out .intro-bars i{transform:translateY(-101%)}
+.intro.done{display:none}
+
+/* CURSORE */
+.c-dot,.c-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:90;display:none}
+.has-cursor .c-dot,.has-cursor .c-ring{display:flex}
+.c-dot{width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--rust)}
+.c-ring{width:38px;height:38px;margin:-19px;border-radius:50%;border:1px solid var(--fg);align-items:center;justify-content:center;transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),background .3s,border-color .3s}
+.c-ring span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .2s}
+.c-ring.big{width:104px;height:104px;margin:-52px;background:var(--rust);border-color:var(--rust)}
+.c-ring.big span{opacity:1}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px var(--gut);color:var(--fg);transition:color .7s var(--ease),transform .5s var(--ease)}
+.nav.hide{transform:translateY(-100%)}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);opacity:0;transition:opacity .4s,background-color .7s var(--ease)}
+.nav.solid::before{opacity:.92}
+.nav.solid{backdrop-filter:blur(10px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:500;letter-spacing:-.015em}
+.brand .mono{width:46px;height:auto;color:var(--rust);transition:transform .6s var(--ease)}
+.brand:hover .mono{transform:rotate(-8deg) scale(1.06)}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* timbro tondo che ruota */
+.badge{display:inline-block;width:clamp(96px,9vw,132px);aspect-ratio:1;position:relative}
+.badge img{width:100%;height:100%;will-change:transform}
+.badge::after{content:"↓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--rust);opacity:0;transition:opacity .3s}
+.badge:hover img{opacity:.25}
+.badge:hover::after{opacity:1}
+.badge img{transition:opacity .3s}
+.intro-logo{flex-direction:column;gap:.18em}
+.intro-mono{width:.9em;height:auto;color:var(--rust);opacity:0;transform:translateY(30%) scale(.8);transition:opacity .8s var(--ease),transform 1s var(--ease)}
+.intro.go .intro-mono{opacity:1;transform:none}
+.intro-word{display:flex}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em}
+
+/* BOTTONI con testo che scorre */
+.btn{display:inline-flex;align-items:center;gap:12px;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;padding:16px 24px;border:1px solid var(--fg);border-radius:999px;transition:background .3s,color .3s,border-color .3s}
+.btn .lab{display:inline-grid;overflow:hidden;height:1.3em;line-height:1.3em}
+.btn .lab span{grid-area:1/1;transition:transform .5s var(--ease)}
+.btn .lab span+span{transform:translateY(110%)}
+.btn:hover .lab span:first-child{transform:translateY(-110%)}
+.btn:hover .lab span+span{transform:none}
+.btn .arr{transition:transform .5s var(--ease)}
+.btn:hover .arr{transform:rotate(-45deg)}
+.btn-acc{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn-line:hover{background:var(--fg);color:var(--bg)}
+
+/* BARRA FISSA IN BASSO */
+.hbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:space-between;padding:14px var(--gut);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;mix-blend-mode:difference;color:#f0efee;pointer-events:none}
+.hbar .clock{font-variant-numeric:tabular-nums}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:110px var(--gut) 40px}
+.hero-top{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hero-top .label:nth-child(2){text-align:center}
+.hero-top .label:nth-child(3){text-align:right}
+.hero-name{font-weight:300;letter-spacing:-.055em;line-height:.82;white-space:nowrap;margin:40px 0 30px;font-size:15vw}
+.hero-name .clip{padding-bottom:.1em}
+.hero-name .clip > span{transition-duration:1.1s}
+.hero-name .g{color:var(--rust);font-style:italic}
+.ready .hero-name .clip > span{transform:none}
+.hero-head{font-weight:300;letter-spacing:-.045em;line-height:.94;font-size:clamp(2.9rem,7.6vw,8.6rem);margin:44px 0 34px;max-width:13ch}
+.hero-head .clip{padding-bottom:.12em}
+.hero-head .clip > span{transition-duration:1.1s}
+.hero-head .g{color:var(--rust);font-style:italic}
+.ready .hero-head .clip > span{transform:none}
+.hero-bottom{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;align-items:end}
+.hero-bottom p{font-size:clamp(1.05rem,1.4vw,1.3rem);max-width:40ch;line-height:1.45}
+.hero-bottom .scroll{text-align:center}
+.hero-bottom .end{text-align:right}
+.fade{opacity:0;transform:translateY(16px);transition:opacity 1s var(--ease) .5s,transform 1s var(--ease) .5s}
+.ready .fade{opacity:1;transform:none}
+
+/* IMMAGINE CHE SI ALLARGA */
+.expand{height:220vh;position:relative}
+.expand-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.expand-media{position:absolute;inset:0;clip-path:inset(var(--y,22%) var(--x,26%) round var(--r,24px));will-change:clip-path}
+.expand-media img,.expand-media video{width:100%;height:100%;object-fit:cover;transform:scale(var(--s,1.25));display:block}
+.expand-cap{position:absolute;left:var(--gut);right:var(--gut);bottom:44px;display:flex;justify-content:space-between;color:#f0efee;mix-blend-mode:difference;z-index:2}
+
+/* INTESTAZIONI */
+.sec{padding:clamp(90px,12vw,170px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:0 var(--gut);margin-bottom:clamp(40px,6vw,80px)}
+.sec-title{font-size:clamp(2.6rem,6.4vw,6.4rem);line-height:.95;padding:0 var(--gut);margin-bottom:clamp(40px,6vw,90px);max-width:16ch}
+#lavori .sec-title{margin-bottom:0}
+
+/* AI BRAND SYSTEM */
+.abs{background:var(--ink);color:#e4e8e4;border-block:1px solid #3c4a3f}
+.abs .label.acc{color:var(--muschio)}
+.abs-text p{color:#adb8ae!important}
+.abs-grid{max-width:900px;margin:0 auto;padding:0 var(--gut);text-align:center}
+.abs h2{font-size:clamp(2.6rem,6vw,6rem);line-height:.95;margin:22px 0 28px}
+.abs-text p{font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.45;color:var(--mut);max-width:52ch;margin:0 auto 40px}
+
+/* CASO STUDIO DESIGN SYSTEM */
+.mock-hero{margin:0 var(--gut);border-radius:22px;overflow:hidden;aspect-ratio:16/9;background:var(--soft)}
+.mock-hero img{width:100%;height:100%;object-fit:cover;transform:scale(var(--z,1.14));transform-origin:50% 40%;will-change:transform}
+.ds-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(30px,5vw,90px);padding:clamp(50px,6vw,80px) var(--gut) 0;align-items:start}
+.ds-intro .facts{margin:0}
+.ds-outputs{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,4vw,60px) clamp(20px,3vw,40px);padding:clamp(80px,10vw,140px) var(--gut) 0}
+.out{margin:0}
+.out-wide{grid-column:1/-1;display:grid;grid-template-columns:2.2fr 1fr;gap:clamp(24px,4vw,60px);align-items:end}
+.out-wide .out-img{aspect-ratio:16/10}
+.out-wide .out-img img{height:100%;object-fit:cover;object-position:50% 38%;transform:scale(1.32);transform-origin:50% 40%}
+.out-wide:hover .out-img img{transform:scale(1.36)}
+.out-img{border-radius:18px;overflow:hidden;background:var(--soft)}
+.out-img img{width:100%;transition:transform 1.4s var(--ease)}
+.out:hover .out-img img{transform:scale(1.04)}
+.out:not(.out-wide) .out-img{aspect-ratio:4/3}
+.out:not(.out-wide) .out-img img{height:100%;object-fit:cover}
+.out figcaption{margin-top:20px}
+.out-wide figcaption{margin-top:0;padding-bottom:10px}
+.out h3{font-size:clamp(1.6rem,2.5vw,2.3rem);line-height:1.05;margin:12px 0 12px}
+.out p{color:var(--mut);max-width:44ch}
+.ds-links{display:flex;flex-wrap:wrap;gap:12px;padding:56px var(--gut) 0}
+
+/* CASO STUDIO JET SET */
+.case-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(30px,5vw,90px);align-items:center;padding:0 var(--gut)}
+.case-video{position:relative;height:min(82vh,820px);aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#000}
+.case-video video{width:100%;height:100%;object-fit:cover;display:block}
+.sound{position:absolute;right:14px;bottom:14px;font:500 .7rem/1 Augustina,Georgia,serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(15,24,33,.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:11px 15px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.sound i{width:7px;height:7px;border-radius:50%;background:#adb8ae}
+.sound[aria-pressed="true"] i{background:var(--rust)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 30px;border-top:1px solid var(--line);padding-top:24px;margin:0 0 38px}
+.facts dd{margin:6px 0 0;font-size:1.12rem;line-height:1.3}
+.case-lead{font-size:clamp(1.35rem,2.1vw,1.9rem);line-height:1.28;font-weight:300;letter-spacing:-.02em;max-width:30ch;margin-bottom:24px}
+.case .roles{color:var(--mut);max-width:52ch}
+.case .roles b{font-weight:500;color:var(--fg)}
+.process{display:flex;flex-direction:column;gap:clamp(70px,9vw,130px);padding:clamp(90px,11vw,150px) var(--gut) 0}
+.proc{margin:0}
+.proc-head{display:grid;grid-template-columns:.42fr 1.58fr;gap:40px;margin-bottom:30px}
+.proc-head h3{font-size:clamp(1.9rem,3.2vw,3rem);line-height:1}
+.proc-head p{color:var(--mut);max-width:58ch;margin-top:16px}
+.proc-img{display:block;width:100%;border:0;padding:0;background:#111214;border-radius:18px;overflow:hidden;cursor:zoom-in;position:relative;transform:scale(var(--k,1));transform-origin:50% 0;will-change:transform}
+.proc-img img{width:100%;transition:transform 1.2s var(--ease)}
+.proc-img:hover img{transform:scale(1.03)}
+.proc-img .hint{position:absolute;right:16px;top:14px;color:#e4e8e4;background:rgba(15,24,33,.6);border-radius:999px;padding:8px 13px}
+.lb{position:fixed;inset:0;z-index:95;background:rgba(15,24,33,.96);display:none;overflow:auto;cursor:zoom-out;overscroll-behavior:contain}
+.lb.on{display:block}
+.lb img{width:max(100vw,1800px);max-width:none;margin:auto}
+.lb .close{position:fixed;right:20px;top:18px;color:#e4e8e4;font:500 .72rem/1 Augustina,Georgia,serif;letter-spacing:.14em;text-transform:uppercase;background:rgba(15,24,33,.7);border:1px solid #3c4a3f;border-radius:999px;padding:12px 16px;cursor:pointer}
+
+/* AUDIOVISIVO */
+.wide-wrap{padding:0 var(--gut)}
+.case-video.wide{height:auto;width:100%;aspect-ratio:16/9;border-radius:22px}
+.facts-4{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px}
+.wide-wrap .roles{max-width:80ch}
+.sb-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:clamp(90px,10vw,140px) var(--gut) 30px}
+.sb-head h3,.ab-text h3{font-size:clamp(1.9rem,3.2vw,3rem);line-height:1;margin-top:14px}
+.sb-nav{display:flex;gap:10px}
+.sb-nav button{width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--fg);font-size:1.1rem;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.sb-nav button:hover{background:var(--rust);border-color:var(--rust);color:#fff}
+.sb{overflow-x:auto;scrollbar-width:none;cursor:grab;scroll-snap-type:x mandatory;scroll-padding-left:var(--gut);padding:0 var(--gut)}
+.sb::-webkit-scrollbar{display:none}
+.sb.drag{cursor:grabbing;scroll-snap-type:none}
+.sb.drag *{pointer-events:none}
+.sb-track{display:flex;gap:clamp(14px,1.8vw,24px);width:max-content;padding-right:var(--gut)}
+.beat{width:clamp(270px,30vw,460px);scroll-snap-align:start;user-select:none}
+.beat-img{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;margin-bottom:16px}
+.beat-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.beat:hover .beat-img img{transform:scale(1.05)}
+.tc{position:absolute;left:12px;top:10px;font-size:.7rem;letter-spacing:.1em;color:#fff;background:rgba(15,24,33,.55);padding:5px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
+.beat-on{font-size:1.15rem;line-height:1.3;margin:8px 0 8px;letter-spacing:-.01em}
+.beat-vis{font-size:.95rem;color:var(--mut)}
+.ab-block{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(90px,10vw,140px) var(--gut) 0}
+.ab-text p{color:var(--mut);margin-top:18px;max-width:46ch}
+.ab-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.ab-tabs button{font:500 .72rem/1 Augustina,Georgia,serif;letter-spacing:.1em;text-transform:uppercase;padding:11px 15px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.ab-tabs button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.ab{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;user-select:none}
+.ab img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s}
+.ab-before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ab-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#fff;pointer-events:none}
+.ab-line i{position:absolute;top:50%;left:50%;width:48px;height:48px;margin:-24px;border-radius:50%;background:var(--rust);color:#fff;display:flex;align-items:center;justify-content:center;font-style:normal}
+.ab .label{position:absolute;top:14px;color:#fff;background:rgba(15,24,33,.55);padding:6px 10px;border-radius:999px}
+.ab-l{left:14px}.ab-r{right:14px}
+.ab input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+
+.case-grid.rev{grid-template-columns:1fr auto}
+.notes{list-style:none;margin:34px 0 0;padding:0;border-top:1px solid var(--line)}
+.notes li{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);color:var(--mut);font-size:1rem}
+
+
+/* FRASE CHE SI ACCENDE */
+.statement{height:260vh;position:relative}
+.statement-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--gut)}
+.statement .label{margin-bottom:34px}
+.statement-text{font-size:clamp(2rem,4.6vw,4.6rem);line-height:1.08;font-weight:300;letter-spacing:-.035em;max-width:22ch}
+.statement-text .w{opacity:.14;transition:opacity .25s}
+.statement-text .w.on{opacity:1}
+.statement-text .w.a{color:var(--rust);font-style:italic}
+
+/* METODO: tessere */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin:0 var(--gut)}
+.tile{position:relative;overflow:hidden;padding:30px 26px 34px;min-height:400px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--line);isolation:isolate}
+.tile:last-child{border-right:0}
+.tile::before{content:"";position:absolute;inset:0;background:var(--rust);transform:translateY(101%);transition:transform .6s var(--ease);z-index:-1}
+.tile:hover::before{transform:none}
+.tile:hover,.tile:hover .label,.tile:hover p{color:#fff}
+.tile .top{display:flex;justify-content:space-between}
+.tile .arr{font-size:1.3rem;transition:transform .6s var(--ease)}
+.tile:hover .arr{transform:rotate(-45deg)}
+.tile h3{font-size:clamp(1.7rem,2.4vw,2.4rem);line-height:1.02;margin-bottom:14px}
+.tile p{color:var(--mut);font-size:1rem;transition:color .3s}
+.tools-line{padding:60px var(--gut) 0;display:flex;flex-wrap:wrap;gap:12px 34px;align-items:baseline;font-size:clamp(1.2rem,2vw,1.7rem);font-weight:300;letter-spacing:-.02em}
+.tools-line .label{margin-right:10px}
+
+/* CHIUSURA */
+.foot{padding:clamp(100px,12vw,170px) var(--gut) 70px;overflow:hidden}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.foot h2{font-size:clamp(2.6rem,6.6vw,6.8rem);line-height:.95;max-width:12ch}
+.foot .actions{display:flex;gap:12px;flex-wrap:wrap}
+.foot-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:90px;padding-top:22px;border-top:1px solid var(--line)}
+.foot-row a:hover{color:var(--acc)}
+.foot-big{font-size:15vw;font-weight:300;letter-spacing:-.055em;line-height:.8;white-space:nowrap;margin-top:60px;color:var(--fg)}
+.foot-big .g{color:var(--rust);font-style:italic}
+
+/* comparse */
+.js .rv{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:940px){
+  .nav-links a:not(.btn){display:none}
+  .hbar{display:none}
+  .hero-top{grid-template-columns:1fr 1fr}
+  .hero-top .label:nth-child(2){display:none}
+  .hero-bottom{grid-template-columns:1fr;gap:22px}
+  .hero-bottom .scroll{display:none}
+  .hero-bottom .end{text-align:left}
+  .expand{height:auto}
+  .expand-sticky{position:relative;height:62vh}
+  .expand-cap .label+.label{display:none}
+  .expand-media{clip-path:none}
+  .expand-media img,.expand-media video{transform:none}
+  .case-grid{grid-template-columns:1fr}
+  .case-video{height:auto;width:100%;max-width:440px}
+  .proc-head{grid-template-columns:1fr;gap:6px}
+  .proc-img{transform:none}
+  .case-grid.rev{grid-template-columns:1fr}
+  .ds-intro,.ds-outputs,.out-wide{grid-template-columns:1fr}
+  .abs-grid{grid-template-columns:1fr}
+      .mock-hero{aspect-ratio:4/3}
+  .mock-hero img{transform:none}
+  .facts-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sb-nav{display:none}
+  .beat{width:78vw}
+  .ab-block{grid-template-columns:1fr}
+  .case-grid.rev .case-video{order:-1}
+  .notes li{grid-template-columns:1fr;gap:4px}
+  .statement{height:auto}
+  .statement-sticky{position:static;height:auto;padding-block:100px}
+  .statement-text .w{opacity:1}
+  .tiles{grid-template-columns:1fr}
+  .tile{min-height:0;border-right:0;border-bottom:1px solid var(--line);gap:40px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .clip > span,.fade{transform:none!important;opacity:1!important}
+  .js .rv{opacity:1;transform:none}
+  .statement-text .w{opacity:1}
+  .intro{display:none!important}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro" aria-hidden="true">
+  <div class="intro-bars"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="intro-in">
+    <div class="intro-logo"><svg class="intro-mono" viewBox="0 0 108.11 86.86" fill="currentColor" aria-hidden="true"><g><g><polygon points="67.86 19.56 63.2 6.75 71 1.17 71 0 45.37 0 45.37 1.17 53.34 6.75 35.06 56.99 42.24 56.99 58.27 12.94 66.27 34.91 73.45 34.91 70.32 26.31 101.36 26.31 106.93 33.9 108.11 33.9 108.11 19.56 67.86 19.56"/><path d="M60.15,42.84l3.28,5.52,7.75,0,5.59,15.34H25.47a18.72,18.72,0,0,1,0-37.44H38.94l2.48-6.75h-16a25.47,25.47,0,0,0,0,50.94h4.67l-3.5,9.61L16.19,85.68v1.18H41.83V85.68l-8-5.57,3.5-9.61h41.9l3.5,9.61-8,5.57v1.18h25.63V85.68L89.9,80.11,78.36,48.41h23V63.75H91.16l2.48,6.75h14.47V41.66h-48Z"/></g></g></svg><div class="intro-word" data-split>alessio granella</div></div>
+    <div class="intro-meta">
+      <div class="label">Brand designer<br>Lavori con l'AI</div>
+      <div class="intro-count">000</div>
+    </div>
+    <div class="intro-line"></div>
+  </div>
+</div>
+
+<div class="lb" role="dialog" aria-modal="true" aria-label="Immagine ingrandita" data-lenis-prevent><button class="close" type="button">Chiudi ✕</button><img alt=""></div>
+<div class="c-dot" aria-hidden="true"></div>
+<div class="c-ring" aria-hidden="true"><span></span></div>
+
+<header class="nav">
+  <a class="brand" href="#top" aria-label="alessio granella, torna su">
+    <svg class="mono" viewBox="0 0 108.11 86.86" fill="currentColor" aria-hidden="true"><g><g><polygon points="67.86 19.56 63.2 6.75 71 1.17 71 0 45.37 0 45.37 1.17 53.34 6.75 35.06 56.99 42.24 56.99 58.27 12.94 66.27 34.91 73.45 34.91 70.32 26.31 101.36 26.31 106.93 33.9 108.11 33.9 108.11 19.56 67.86 19.56"/><path d="M60.15,42.84l3.28,5.52,7.75,0,5.59,15.34H25.47a18.72,18.72,0,0,1,0-37.44H38.94l2.48-6.75h-16a25.47,25.47,0,0,0,0,50.94h4.67l-3.5,9.61L16.19,85.68v1.18H41.83V85.68l-8-5.57,3.5-9.61h41.9l3.5,9.61-8,5.57v1.18h25.63V85.68L89.9,80.11,78.36,48.41h23V63.75H91.16l2.48,6.75h14.47V41.66h-48Z"/></g></g></svg>
+    <span>alessio granella</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#lavori">Lavori</a>
+    <a href="#design-system">Design system</a>
+    <a href="#jet-set">Jet Set</a>
+    <a href="#tennis">Tennis</a>
+    <a href="#audiovisivo">Audiovisivo</a>
+    <a href="#metodo">Metodo</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+</header>
+
+<div class="hbar" aria-hidden="true">
+  <span>(Portfolio / ©2026)</span>
+  <span>Sardegna · <span class="clock">--:--:--</span></span>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" data-theme="light">
+    <div class="hero-top fade">
+      <span class="label">(Portfolio / ©2026)</span>
+      <span class="label">Brand designer</span>
+      <span class="label">Sardegna, Italia</span>
+    </div>
+    <h1 class="hero-head" data-split="words">Design di brand <span class="g">con l'AI</span> per aziende e agenzie.</h1>
+    <div class="hero-bottom">
+      <p class="fade">Sono un brand designer. Uso l'intelligenza artificiale per progettare design system, video e materiali di comunicazione.</p>
+      <div class="scroll fade"><a class="badge" href="#lavori" data-cursor="Lavori" aria-label="Vai ai lavori"><img src="assets/ag-logo-round.svg" alt="" data-spin="1"></a></div>
+      <div class="end fade">
+        <a class="btn btn-line" href="#lavori"><span class="lab"><span>Guarda i lavori</span><span>Guarda i lavori</span></span><span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMMAGINE CHE SI ALLARGA -->
+  <section class="expand" data-theme="light">
+    <div class="expand-sticky">
+      <div class="expand-media"><video src="assets/video/audiovisivo.mp4" poster="assets/img/av-07-audience.webp" muted loop playsinline autoplay preload="auto" aria-label="Video sull'impatto del settore audiovisivo italiano, realizzato con l'AI"></video></div>
+      <div class="expand-cap"><span class="label" style="color:inherit">(OpenEconomics · APA)</span><span class="label" style="color:inherit">Video AI · Settore audiovisivo</span></div>
+    </div>
+  </section>
+
+  <!-- LAVORI -->
+  <section class="sec" id="lavori" data-theme="dark">
+    <h2 class="sec-title rv">Per ogni lavoro: cosa ha fatto l'AI e cosa ho fatto io.</h2>
+  </section>
+
+  <!-- CASO STUDIO: DESIGN SYSTEM OPENECONOMICS -->
+  <section class="sec case" id="design-system" data-theme="light">
+    <div class="sec-head rv"><span class="label acc">Caso studio · OpenEconomics</span><span class="label">(Design system · v0.6)</span></div>
+    <h2 class="sec-title rv">Il design system di OpenEconomics: una sola fonte per siti, report, grafici e social.</h2>
+    <div class="mock-hero">
+      <img src="assets/img/oe-mock-laptop.webp" alt="Portatile su una scrivania con aperta la libreria del design system OpenEconomics, pagina UI Kit e documentazione">
+    </div>
+    <div class="ds-intro">
+      <div class="rv">
+        <p class="case-lead">Il materiale di OpenEconomics era già coerente: brochure, presentazioni, report e prodotti digitali li avevo costruiti io nel tempo. Il design system serve a far produrre il team marketing in autonomia e più in fretta, senza perdere quella coerenza.</p>
+        <p class="roles"><b>AI:</b> scrive il codice dei componenti e del motore dei grafici, la documentazione e gli esempi, e controlla che ogni pagina rispetti le regole. <b>Io:</b> fisso le regole del brand, scelgo cosa entra nel sistema, rivedo ogni componente e approvo i formati social da cui nascono le regole.</p>
+      </div>
+      <dl class="facts rv">
+        <div><dt class="label">Cliente</dt><dd>OpenEconomics</dd></div>
+        <div><dt class="label">Contiene</dt><dd>Token, componenti React, UI kit, blocchi di pagina</dd></div>
+        <div><dt class="label">Grafici</dt><dd>Undici tipi dallo stesso motore</dd></div>
+        <div><dt class="label">Social</dt><dd>Regole scritte per caroselli e infografiche</dd></div>
+      </dl>
+    </div>
+
+    <div class="ds-outputs">
+      <figure class="out out-wide rv">
+        <div class="out-img"><img src="assets/img/oe-mock-monitor.webp" alt="Monitor in uno studio con quattro grafici OpenEconomics: barre, colonne, ciambella e mappa delle regioni" loading="lazy"></div>
+        <figcaption><span class="label acc">01 · Grafici</span><h3>OE Charts, il motore dei grafici.</h3><p>Barre, colonne, linee, ciambelle, cascate, mappe, sankey: undici tipi che escono con gli stessi colori, la stessa tipografia e lo stesso formato dei numeri. Un grafico OpenEconomics si riconosce prima di leggerlo.</p></figcaption>
+      </figure>
+      <figure class="out rv">
+        <div class="out-img"><img src="assets/img/oe-mock-tablet.webp" alt="Tablet su un tavolo con la home del sito T33" loading="lazy"></div>
+        <figcaption><span class="label acc">02 · Sito</span><h3>Il sito di T33.</h3><p>Costruito con i blocchi del sistema e aggiornato dal cliente senza passare da me.</p></figcaption>
+      </figure>
+      <figure class="out rv">
+        <div class="out-img"><img src="assets/img/oe-mock-phone.webp" alt="Mano che tiene un telefono con l'infografica sul ritorno sociale di tennis e padel" loading="lazy"></div>
+        <figcaption><span class="label acc">03 · Social</span><h3>Infografiche e caroselli.</h3><p>Chip, numero serif, dato, monogramma in basso: lo stesso ordine in ogni post, scritto nelle regole social del sistema.</p></figcaption>
+      </figure>
+    </div>
+    <div class="ds-links rv">
+      <a class="btn btn-line" href="https://alessiogranella.github.io/openeconomics-design-system/" target="_blank" rel="noopener"><span class="lab"><span>Apri la libreria online</span><span>Apri la libreria online</span></span><span class="arr">→</span></a>
+      <a class="btn btn-line" href="https://aibrandsystem.alessiogranella.com/case-study/" target="_blank" rel="noopener"><span class="lab"><span>Leggi il caso studio completo</span><span>Leggi il caso studio completo</span></span><span class="arr">→</span></a>
+    </div>
+  </section>
+
+  <!-- CASO STUDIO: JET SET -->
+  <section class="sec case" id="jet-set" data-theme="dark">
+    <div class="sec-head rv"><span class="label acc">Caso studio · Per l'agenzia Drop</span><span class="label">(Video AI · 9:16)</span></div>
+    <h2 class="sec-title rv">Acqua di Sardegna, Jet Set. Un video generato con l'AI, dalla modella al profumo.</h2>
+    <div class="case-grid">
+      <div class="case-video rv">
+        <video src="assets/video/jet-set.mp4" poster="assets/img/jet-set-poster.webp" muted loop playsinline preload="metadata" aria-label="Video Jet Set per Acqua di Sardegna"></video>
+        <button class="sound" type="button" aria-pressed="false"><i></i><span>Audio off</span></button>
+      </div>
+      <div class="case-info rv">
+        <dl class="facts">
+          <div><dt class="label">Cliente</dt><dd>Acqua di Sardegna</dd></div>
+          <div><dt class="label">Fragranza</dt><dd>Scalo Porto Cervo · Jet Set</dd></div>
+          <div><dt class="label">Per</dt><dd>Drop, agenzia di comunicazione</dd></div>
+          <div><dt class="label">Formato</dt><dd>Verticale 9:16, 21 secondi</dd></div>
+        </dl>
+        <p class="case-lead">Una donna in Vespa lungo la costa al tramonto, poi la bottiglia. Modella, luoghi e movimenti sono generati con l'AI.</p>
+        <p class="roles"><b>AI:</b> genera la modella in ogni posa, le scene e il movimento di ogni inquadratura. <b>Io:</b> scelgo il volto, l'outfit e i luoghi, decido le inquadrature, monto il video e chiudo con il prodotto. Il video porta il bollino AI.</p>
+      </div>
+    </div>
+    <div class="process">
+      <figure class="proc">
+        <div class="proc-head rv">
+          <span class="label acc">Processo · 01</span>
+          <div>
+            <h3>La modella, uguale in ogni scena.</h3>
+            <p>Parto da un solo ritratto. Genero la stessa donna di profilo, di tre quarti e di spalle, poi a figura intera con lo stesso abito. Con queste viste il volto resta lo stesso in tutto il video. Le prime prove in spiaggia diventano subito brevi clip, per controllare come si muove.</p>
+          </div>
+        </div>
+        <button class="proc-img" type="button" data-full="assets/img/jet-set-processo-1.webp" data-cursor="Ingrandisci"><img src="assets/img/jet-set-processo-1.webp" alt="Pipeline a nodi: dal ritratto della modella alle viste da più angolazioni, alle scene in spiaggia e ai primi video" loading="lazy"><span class="label hint">(Ingrandisci)</span></button>
+      </figure>
+      <figure class="proc">
+        <div class="proc-head rv">
+          <span class="label acc">Processo · 02</span>
+          <div>
+            <h3>La scena, costruita dai riferimenti.</h3>
+            <p>Aggiungo i riferimenti: l'outfit rosa con borsa e sandali, una Vespa d'epoca, foto di moda vintage e la strada sulla scogliera. Ogni inquadratura diventa prima un'immagine da approvare e solo dopo un video. L'ultima scena è il packshot della bottiglia.</p>
+          </div>
+        </div>
+        <button class="proc-img" type="button" data-full="assets/img/jet-set-processo-2.webp" data-cursor="Ingrandisci"><img src="assets/img/jet-set-processo-2.webp" alt="Pipeline a nodi: riferimenti di outfit, Vespa e location combinati nelle immagini delle scene, poi trasformate in video" loading="lazy"><span class="label hint">(Ingrandisci)</span></button>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VIDEO TENNIS -->
+  <section class="sec case" id="tennis" data-theme="light">
+    <div class="sec-head rv"><span class="label acc">Video · Per OpenEconomics e FITP</span><span class="label">(9:16 · 13 secondi)</span></div>
+    <h2 class="sec-title rv">Tennis e padel in Italia: i dati entrano sul colpo di palla.</h2>
+    <div class="case-grid rev">
+      <div class="case-info rv">
+        <dl class="facts">
+          <div><dt class="label">Cliente</dt><dd>OpenEconomics</dd></div>
+          <div><dt class="label">Dati</dt><dd>Impatto sociale di tennis e padel, per FITP</dd></div>
+          <div><dt class="label">Formato</dt><dd>Verticale 9:16, 13 secondi</dd></div>
+          <div><dt class="label">Audio</dt><dd>Solo i colpi di palla</dd></div>
+        </dl>
+        <p class="case-lead">Il titolo entra quando il tennista lancia la pallina. Poi cinque dati, uno alla volta, ciascuno su un colpo.</p>
+        <p class="roles"><b>AI:</b> scrive il codice che sovrappone la grafica al girato fotogramma per fotogramma, isola la pallina dal resto dell'immagine e genera i suoni dei colpi. <b>Io:</b> scelgo i dati e il momento in cui entrano, disegno la grafica con il design system OpenEconomics e decido il trattamento del girato.</p>
+        <ul class="notes">
+          <li><span class="label acc">Colore</span>Il girato diventa viola Bluette, il colore del brand. La pallina resta gialla: è l'unica cosa non viola.</li>
+          <li><span class="label acc">Telefono</span>I numeri occupano un quinto della larghezza del quadro, misurati sullo schermo di un telefono.</li>
+          <li><span class="label acc">Trasparenza</span>Il bollino AI resta in alto a sinistra per tutta la durata.</li>
+        </ul>
+      </div>
+      <div class="case-video rv">
+        <video src="assets/video/tennis.mp4" poster="assets/img/tennis-poster.webp" muted loop playsinline preload="metadata" aria-label="Video sui dati di tennis e padel in Italia"></video>
+        <button class="sound" type="button" aria-pressed="false"><i></i><span>Audio off</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO AUDIOVISIVO -->
+  <section class="sec case" id="audiovisivo" data-theme="dark">
+    <div class="sec-head rv"><span class="label acc">Video · Per OpenEconomics e APA</span><span class="label">(16:9 · 1:14)</span></div>
+    <h2 class="sec-title rv">Lo studio sul settore audiovisivo italiano, raccontato in nove scene.</h2>
+    <div class="wide-wrap">
+      <div class="case-video wide rv">
+        <video src="assets/video/audiovisivo.mp4" poster="assets/img/av-01-camera.webp" muted loop playsinline preload="metadata" aria-label="Video sull'impatto socioeconomico del settore audiovisivo italiano"></video>
+        <button class="sound" type="button" aria-pressed="false"><i></i><span>Audio off</span></button>
+      </div>
+      <dl class="facts facts-4 rv">
+        <div><dt class="label">Cliente</dt><dd>OpenEconomics, per APA</dd></div>
+        <div><dt class="label">Dati</dt><dd>Studio d'impatto socioeconomico, anno 2023</dd></div>
+        <div><dt class="label">Formato</dt><dd>16:9, 1 minuto e 14, in inglese</dd></div>
+        <div><dt class="label">Voce e musica</dt><dd>Generate con l'AI</dd></div>
+      </dl>
+      <p class="roles rv"><b>AI:</b> genera le immagini di partenza, i clip di ogni scena, la voce narrante e la musica, e scrive il codice che imprime i titoli sul video. <b>Io:</b> scrivo lo script e lo storyboard beat per beat, il prompt di ogni scena, disegno la tipografia con il design system OpenEconomics e decido il montaggio.</p>
+    </div>
+
+    <div class="sb-head rv">
+      <div><span class="label acc">(Storyboard)</span><h3>Nove beat, dalla domanda iniziale allo SROI.</h3></div>
+      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Beat precedente">←</button><button type="button" class="sb-next" aria-label="Beat successivo">→</button></div>
+    </div>
+    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
+      <div class="sb-track">
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-01-camera.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Beat 01 · Gancio</p><p class="beat-on">“How much is one euro really worth, once it’s invested in film and TV?”</p><p class="beat-vis">Una cinepresa 35mm su un tavolo. Zoom lento fino a entrare nella lente.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-02-set-lights.webp" alt="" loading="lazy"><span class="tc">0:07</span></div><p class="label acc">Beat 02 · Input</p><p class="beat-on">€8 BN — Total audiovisual spend in 2023</p><p class="beat-vis">Le luci di un set vuoto si accendono una dopo l’altra.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-03-marquee.webp" alt="" loading="lazy"><span class="tc">0:15</span></div><p class="label acc">Beat 03 · Valore della produzione</p><p class="beat-on">€23.5 BN — Production value generated</p><p class="beat-vis">L’ingresso di un cinema di notte, con l’insegna CINEMA.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-04-square-aerial.webp" alt="" loading="lazy"><span class="tc">0:22</span></div><p class="label acc">Beat 04 · PIL</p><p class="beat-on">€11.8 BN — Contribution to GDP</p><p class="beat-vis">Una piazza storica dall’alto, con un set illuminato.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-05-crew.webp" alt="" loading="lazy"><span class="tc">0:29</span></div><p class="label acc">Beat 05 · Occupazione</p><p class="beat-on">153,000 — Jobs sustained</p><p class="beat-vis">Dietro le quinte: trucco, luci, costumi e macchina da presa.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-06-institution.webp" alt="" loading="lazy"><span class="tc">0:37</span></div><p class="label acc">Beat 06 · Gettito fiscale</p><p class="beat-on">€3.2 BN — Tax revenue generated</p><p class="beat-vis">Un edificio pubblico al tramonto, ripreso da una gru che sale.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-07-audience.webp" alt="" loading="lazy"><span class="tc">0:44</span></div><p class="label acc">Beat 07 · Climax SROI</p><p class="beat-on">4.5 — Every €1 invested returns €4.5 in social value</p><p class="beat-vis">Una sala piena vista dallo schermo. La camera arretra.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-08-village.webp" alt="" loading="lazy"><span class="tc">0:57</span></div><p class="label acc">Beat 08 · Impatti intangibili</p><p class="beat-on">Wellbeing, culture, film tourism</p><p class="beat-vis">Turisti all’alba su un’isola del Mediterraneo.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/av-closing.webp" alt="" loading="lazy"><span class="tc">1:06</span></div><p class="label acc">Beat 09 · Chiusura</p><p class="beat-on">“We measure what really matters”</p><p class="beat-vis">Card in Bluette con il logo OpenEconomics, costruita senza AI.</p></article>
+      </div>
+    </div>
+
+    <div class="ab-block">
+      <div class="ab-text rv">
+        <span class="label acc">(Prima e dopo)</span>
+        <h3>Le scene rifatte in chiave contemporanea.</h3>
+        <p>La prima versione aveva un'aria vintage: grana, insegne d'epoca, silhouette. Ho rigenerato le scene dalla 3 alla 8 con un look di oggi, e ho reso leggibili i dettagli che servono al racconto, come l'insegna del cinema e i reparti di una troupe al lavoro.</p>
+        <div class="ab-tabs" role="tablist">
+          <button type="button" class="on" data-ab="03-marquee">Beat 03 · Cinema</button>
+          <button type="button" data-ab="05-crew">Beat 05 · Troupe</button>
+          <button type="button" data-ab="07-audience">Beat 07 · Sala</button>
+        </div>
+      </div>
+      <div class="ab rv" style="--pos:50%">
+        <img class="ab-after" src="assets/img/av-03-marquee-dopo.webp" alt="Versione finale della scena">
+        <img class="ab-before" src="assets/img/av-03-marquee-prima.webp" alt="Prima versione della scena">
+        <span class="ab-line"><i>↔</i></span>
+        <span class="label ab-l">Prima</span><span class="label ab-r">Dopo</span>
+        <input type="range" min="0" max="100" value="50" aria-label="Confronta prima e dopo">
+      </div>
+    </div>
+  </section>
+
+  <!-- METODO -->
+  <section class="sec" id="metodo" data-theme="light">
+    <div class="sec-head rv"><span class="label acc">Come lavoro</span><span class="label">(04)</span></div>
+    <h2 class="sec-title rv">Dove lavora l'AI e dove lavoro io.</h2>
+    <div class="tiles rv">
+      <div class="tile"><div class="top"><span class="label">01 · Io</span><span class="arr">→</span></div><div><h3>Ascolto e brief</h3><p>Un'intervista con chi conosce l'azienda. Capisco cosa deve dire il lavoro e a chi.</p></div></div>
+      <div class="tile"><div class="top"><span class="label">02 · AI</span><span class="arr">→</span></div><div><h3>Proposte e varianti</h3><p>L'AI genera direzioni diverse in poco tempo: composizioni, immagini, prime stesure di codice.</p></div></div>
+      <div class="tile"><div class="top"><span class="label">03 · Io</span><span class="arr">→</span></div><div><h3>Scelta e correzione</h3><p>Scarto quasi tutto. Quello che resta lo correggo finché rispetta il brand in ogni dettaglio.</p></div></div>
+      <div class="tile"><div class="top"><span class="label">04 · AI + io</span><span class="arr">→</span></div><div><h3>Regole per la volta dopo</h3><p>Le scelte diventano regole scritte che l'AI rilegge. Il materiale ripetitivo successivo parte già da lì.</p></div></div>
+    </div>
+    <div class="tools-line rv"><span class="label">Strumenti</span><span>Claude</span><span>ChatGPT</span><span>Lovable</span><span>Midjourney</span><span>Higgsfield</span><span>Magnific</span><span>Figma</span><span>Adobe</span><span>HTML e CSS</span></div>
+  </section>
+
+  <!-- FRASE -->
+  <section class="statement" data-theme="dark">
+    <div class="statement-sticky">
+      <span class="label acc">(Chi sono)</span>
+      <p class="statement-text" data-words>Sono un designer di brand. Lavoro da più di dieci anni tra startup, PMI e agenzie, dalla Sardegna. Uso l'AI ogni giorno come *strumento:* la mano che guida e la testa che pensa restano le *mie.*</p>
+    </div>
+  </section>
+
+  <!-- AI BRAND SYSTEM -->
+  <section class="sec abs" id="ai-brand-system" data-theme="dark">
+    <div class="abs-grid">
+      <div class="abs-text">
+        <span class="label acc rv">(AI Brand System)</span>
+        <h2 class="rv">Ho creato AI Brand System.</h2>
+        <p class="rv">È il servizio con cui trasformo l'identità di un'azienda in un sistema che il team e l'intelligenza artificiale usano ogni giorno. Colori, componenti e pagine tipo stanno dentro i file da cui nascono presentazioni, report, pagine di sito e post, così ogni materiale nuovo parte già dentro il brand.</p>
+        <div class="rv"><a class="btn btn-acc" href="https://aibrandsystem.alessiogranella.com" target="_blank" rel="noopener" data-cursor="Apri"><span class="lab"><span>Scopri AI Brand System</span><span>Scopri AI Brand System</span></span><span class="arr">→</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIUSURA -->
+  <footer class="foot" id="contatti" data-theme="dark">
+    <div class="foot-top rv">
+      <div>
+        <span class="label acc">(Contatti)</span>
+        <h2 style="margin-top:22px">Hai un progetto in mente?</h2>
+      </div>
+      <div class="actions" style="align-items:center">
+        <span class="badge" aria-hidden="true"><img src="assets/ag-logo-round.svg" alt="" data-spin="-1"></span>
+        <a class="btn btn-acc" href="mailto:info@alessiogranella.com" data-cursor="Scrivi"><span class="lab"><span>Scrivimi</span><span>Scrivimi</span></span><span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="foot-row">
+      <a href="mailto:info@alessiogranella.com">info@alessiogranella.com</a>
+      <span>Al tuo fianco ad ogni passo.</span>
+      <a href="#top">Torna su ↑</a>
+    </div>
+    <div class="foot-big" data-fit aria-hidden="true">alessio <span class="g">granella</span></div>
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desktop = () => innerWidth > 940;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  // lettere in maschera
+  $$('[data-split="words"]').forEach(el => {
+    let i = 0;
+    const wrapW = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType !== 3) return wrapW(n);
+      const f = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(w => {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { f.append(' '); return; }
+        const c = document.createElement('span'); c.className = 'clip';
+        const s = document.createElement('span'); s.textContent = w;
+        s.style.transitionDelay = (0.1 + i++ * 0.07) + 's';
+        c.append(s); f.append(c);
+      });
+      n.replaceWith(f);
+    });
+    wrapW(el);
+  });
+  $$('[data-split]:not([data-split="words"])').forEach(el => {
+    let i = 0;
+    const wrap = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const f = document.createDocumentFragment();
+          [...n.textContent].forEach(ch => {
+            if (ch === ' ') { const sp = document.createElement('span'); sp.style.cssText = 'display:inline-block;width:.26em'; f.append(sp); return; }
+            const c = document.createElement('span'); c.className = 'clip';
+            const s = document.createElement('span'); s.textContent = ch;
+            s.style.transitionDelay = (i++ * 0.035) + 's';
+            c.append(s); f.append(c);
+          });
+          n.replaceWith(f);
+        } else wrap(n);
+      });
+    };
+    wrap(el);
+  });
+
+  // nome a tutta larghezza
+  const fit = () => $$('[data-fit]').forEach(el => {
+    el.style.fontSize = '100px';
+    const rg = document.createRange(); rg.selectNodeContents(el);
+    const natural = rg.getBoundingClientRect().width;
+    const cs = getComputedStyle(el.parentElement);
+    const w = el.parentElement.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    el.style.fontSize = (100 * w / natural * .985) + 'px';
+  });
+  fit(); document.fonts && document.fonts.ready.then(fit);
+
+  // parole della frase
+  const st = $('[data-words]');
+  st.innerHTML = st.textContent.split(' ').map(w => w.startsWith('*') ? `<span class="w a">${w.replace(/\*/g, '')}</span>` : `<span class="w">${w}</span>`).join(' ');
+  const words = $$('.w', st);
+
+  // scroll fluido
+  let lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({lerp: .09});
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const t = a.getAttribute('href') === '#top' ? 0 : $(a.getAttribute('href'));
+    if (t === null) return;
+    e.preventDefault();
+    lenis ? lenis.scrollTo(t, {duration: 1.6}) : (t === 0 ? scrollTo({top: 0, behavior: 'smooth'}) : t.scrollIntoView({behavior: 'smooth'}));
+  }));
+
+  // intro
+  const intro = $('.intro');
+  const start = () => document.body.classList.add('ready');
+  if (reduce) { intro.classList.add('done'); start(); }
+  else {
+    lenis && lenis.stop();
+    const count = $('.intro-count'), line = $('.intro-line');
+    requestAnimationFrame(() => intro.classList.add('go'));
+    const t0 = performance.now(), dur = 1500;
+    const tick = now => {
+      const p = clamp((now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      count.textContent = String(Math.round(e * 100)).padStart(3, '0');
+      line.style.transform = `scaleX(${e})`;
+      if (p < 1) requestAnimationFrame(tick);
+      else setTimeout(() => {
+        intro.classList.add('out'); start();
+        setTimeout(() => { intro.classList.add('done'); lenis && lenis.start(); }, 1300);
+      }, 250);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // orologio
+  const clock = $('.clock');
+  const fmt = new Intl.DateTimeFormat('it-IT', {timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+  const setClock = () => clock.textContent = fmt.format(new Date());
+  setClock(); setInterval(setClock, 1000);
+
+  // comparse
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+  $$('.rv').forEach(el => io.observe(el));
+
+  // tema chiaro / scuro per sezione
+  const themed = $$('[data-theme]');
+  const tio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) document.body.classList.toggle('theme-dark', e.target.dataset.theme === 'dark');
+  }), {rootMargin: '-50% 0px -50% 0px'});
+  themed.forEach(s => tio.observe(s));
+
+  // video dei casi: partono quando sono in vista, audio a richiesta
+  $$('.case-video').forEach(box => {
+    const vid = $('video', box), snd = $('.sound', box);
+    snd.addEventListener('click', () => {
+      vid.muted = !vid.muted;
+      snd.setAttribute('aria-pressed', String(!vid.muted));
+      $('span', snd).textContent = vid.muted ? 'Audio off' : 'Audio on';
+      if (vid.paused) vid.play();
+    });
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) vid.play().catch(() => {}); else vid.pause();
+    }), {threshold: .35}).observe(vid);
+  });
+
+  // storyboard: trascina, frecce
+  const sb = $('.sb');
+  let sbDown = false, sbX = 0, sbL = 0, sbMoved = false;
+  sb.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; sbDown = true; sbMoved = false; sbX = e.clientX; sbL = sb.scrollLeft; });
+  addEventListener('pointermove', e => { if (!sbDown) return; const d = e.clientX - sbX; if (Math.abs(d) > 4) { sbMoved = true; sb.classList.add('drag'); } sb.scrollLeft = sbL - d; });
+  addEventListener('pointerup', () => { sbDown = false; sb.classList.remove('drag'); });
+  const step = () => $('.beat', sb).offsetWidth + 24;
+  $('.sb-prev').addEventListener('click', () => sb.scrollBy({left: -step(), behavior: 'smooth'}));
+  $('.sb-next').addEventListener('click', () => sb.scrollBy({left: step(), behavior: 'smooth'}));
+
+  // prima e dopo
+  const ab = $('.ab'), abIn = $('input', ab), abBefore = $('.ab-before', ab), abAfter = $('.ab-after', ab);
+  abIn.addEventListener('input', () => ab.style.setProperty('--pos', abIn.value + '%'));
+  $$('.ab-tabs button').forEach(b => b.addEventListener('click', () => {
+    $$('.ab-tabs button').forEach(x => x.classList.toggle('on', x === b));
+    abBefore.src = `assets/img/av-${b.dataset.ab}-prima.webp`;
+    abAfter.src = `assets/img/av-${b.dataset.ab}-dopo.webp`;
+  }));
+
+  // screenshot del processo a tutto schermo
+  const lb = $('.lb'), lbImg = $('img', lb);
+  const closeLb = () => { lb.classList.remove('on'); lenis && lenis.start(); };
+  $$('.proc-img').forEach(b => b.addEventListener('click', () => {
+    lbImg.src = b.dataset.full; lbImg.alt = $('img', b).alt;
+    lb.classList.add('on'); lb.scrollTo(0, 0); lenis && lenis.stop();
+  }));
+  lb.addEventListener('click', closeLb);
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // animazioni legate allo scroll
+  const exp = $('.expand'), media = $('.expand-media');
+  const stmt = $('.statement');
+  let mqX = 0, lastY = scrollY, vel = 0;
+  const nav = $('.nav'), spins = $$('[data-spin]'), procs = $$('.proc-img'), mock = $('.mock-hero'), mockImg = $('.mock-hero img');
+
+  const loop = () => {
+    const y = scrollY;
+    vel += ((y - lastY) - vel) * .1;
+    const dy = y - lastY;
+    nav.classList.toggle('solid', y > 40);
+    if (dy > 2 && y > 300) nav.classList.add('hide'); else if (dy < -2 || y < 300) nav.classList.remove('hide');
+    lastY = y;
+    if (!reduce) spins.forEach(im => im.style.transform = `rotate(${y * .12 * im.dataset.spin}deg)`);
+
+    if (!reduce && desktop()) {
+      // immagine che si allarga
+      const r = exp.getBoundingClientRect();
+      const p = clamp(-r.top / (exp.offsetHeight - innerHeight));
+      const e = p * p * (3 - 2 * p);
+      media.style.setProperty('--y', (22 * (1 - e)) + '%');
+      media.style.setProperty('--x', (26 * (1 - e)) + '%');
+      media.style.setProperty('--r', (24 * (1 - e)) + 'px');
+      media.style.setProperty('--s', 1.25 - .25 * e);
+
+      // frase
+      const sr = stmt.getBoundingClientRect();
+      const sp = clamp(-sr.top / (stmt.offsetHeight - innerHeight) * 1.3);
+      const lit = Math.round(sp * words.length);
+      words.forEach((w, i) => w.classList.toggle('on', i < lit));
+
+      // mockup del design system: la camera si allontana mentre scorri
+      const mr = mock.getBoundingClientRect();
+      mockImg.style.setProperty('--z', 1.14 - .14 * clamp(1 - (mr.top) / innerHeight));
+
+      // screenshot del processo: crescono entrando
+      procs.forEach(b => {
+        const t = b.getBoundingClientRect().top;
+        b.style.setProperty('--k', .9 + .1 * clamp(1 - (t - innerHeight * .25) / (innerHeight * .75)));
+      });
+
+    }
+
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+
+  // cursore
+  if (matchMedia('(pointer:fine)').matches && !reduce) {
+    document.body.classList.add('has-cursor');
+    const dot = $('.c-dot'), ring = $('.c-ring'), lab = $('.c-ring span');
+    let mx = -100, my = -100, rx = -100, ry = -100;
+    addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px)`; });
+    (function f() { rx += (mx - rx) * .16; ry += (my - ry) * .16; ring.style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(f); })();
+    const on = t => { lab.textContent = t; ring.classList.add('big'); }, off = () => ring.classList.remove('big');
+    $$('[data-cursor]').forEach(el => { el.addEventListener('mouseenter', () => on(el.dataset.cursor)); el.addEventListener('mouseleave', off); });
+  }
+
+  addEventListener('resize', fit);
+})();
+</script>
+</body>
+</html>
