@@ -171,6 +171,9 @@ em{font-style:italic;color:var(--acc)}
 .sb-mock video{width:100%;height:100%;object-fit:cover;display:block}
 .sb-mock figcaption p{max-width:62ch;color:var(--mut);font-size:1rem;line-height:1.5;margin:0}
 
+.mock-hero video{width:100%;height:100%;object-fit:cover;display:block;transform:scale(var(--z,1.06));transform-origin:50% 45%;will-change:transform}
+.out-img video{width:100%;height:100%;object-fit:cover;display:block}
+
 /* INTESTAZIONI */
 .sec{padding:clamp(90px,12vw,170px) 0}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:0 var(--gut);margin-bottom:clamp(40px,6vw,80px)}
@@ -359,6 +362,7 @@ em{font-style:italic;color:var(--acc)}
   .abs-grid{grid-template-columns:1fr}
       .mock-hero{aspect-ratio:4/3}
   .mock-hero img{transform:none}
+  .mock-hero video{transform:none}
   .facts-4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sb-nav{display:none}
   .beat{width:78vw}
@@ -463,7 +467,7 @@ em{font-style:italic;color:var(--acc)}
     <div class="sec-head rv"><span class="label acc">OpenEconomics · 01/06 · Caso studio</span><span class="label">(Design system · v0.6)</span></div>
     <h2 class="sec-title rv">Il design system di OpenEconomics: una sola fonte per siti, report, grafici e social.</h2>
     <div class="mock-hero">
-      <img src="assets/img/oe-mock-laptop.webp" alt="Portatile su una scrivania con una pagina di sito OpenEconomics composta con i blocchi del design system: hero, numeri e card dei prodotti">
+      <video src="assets/video/mock-ds-oe-laptop.mp4" poster="assets/img/mock-ds-oe-laptop.webp" muted loop playsinline preload="none" data-inview aria-label="Portatile su una scrivania con una pagina di sito OpenEconomics composta con i blocchi del design system: hero, numeri e card dei prodotti"></video>
     </div>
     <div class="ds-intro">
       <div class="rv">
@@ -480,7 +484,7 @@ em{font-style:italic;color:var(--acc)}
 
     <div class="ds-outputs">
       <figure class="out out-wide rv">
-        <div class="out-img"><img src="assets/img/oe-mock-monitor.webp" alt="Monitor in uno studio con quattro grafici OpenEconomics: barre, colonne, ciambella e mappa delle regioni" loading="lazy"></div>
+        <div class="out-img"><video src="assets/video/mock-ds-oe-monitor.mp4" poster="assets/img/mock-ds-oe-monitor.webp" muted loop playsinline preload="none" data-inview aria-label="Monitor in uno studio con quattro grafici OpenEconomics: barre, colonne, ciambella e mappa delle regioni"></video></div>
         <figcaption><span class="label acc">01 · Grafici</span><h3>OE Charts, il motore dei grafici.</h3><p>Barre, colonne, linee, ciambelle, cascate, mappe, sankey: undici tipi che escono con gli stessi colori, la stessa tipografia e lo stesso formato dei numeri. Un grafico OpenEconomics si riconosce prima di leggerlo.</p></figcaption>
       </figure>
       <figure class="out rv">
@@ -488,7 +492,7 @@ em{font-style:italic;color:var(--acc)}
         <figcaption><span class="label acc">02 · Sito</span><h3>Il sito di T33.</h3><p>Costruito con i blocchi del sistema e aggiornato dal cliente senza passare da me.</p></figcaption>
       </figure>
       <figure class="out rv">
-        <div class="out-img"><img src="assets/img/oe-mock-phone.webp" alt="Mano che tiene un telefono con l'infografica sul ritorno sociale di tennis e padel" loading="lazy"></div>
+        <div class="out-img"><video src="assets/video/mock-ds-oe-phone.mp4" poster="assets/img/mock-ds-oe-phone.webp" muted loop playsinline preload="none" data-inview aria-label="Mano che tiene un telefono con l'infografica sul ritorno sociale di tennis e padel"></video></div>
         <figcaption><span class="label acc">03 · Social</span><h3>Infografiche e caroselli.</h3><p>Chip, numero serif, dato, monogramma in basso: lo stesso ordine in ogni post, scritto nelle regole social del sistema.</p></figcaption>
       </figure>
     </div>
@@ -757,15 +761,15 @@ em{font-style:italic;color:var(--acc)}
 
     <div class="ds-outputs">
       <figure class="out out-wide rv">
-        <div class="out-img"><img src="assets/img/drop-mock-laptop.webp" alt="Portatile su un tavolo di legno davanti a una finestra sui campi, con la homepage di Drop" loading="lazy"></div>
+        <div class="out-img"><video src="assets/video/mock-ds-drop-laptop.mp4" poster="assets/img/mock-ds-drop-laptop.webp" muted loop playsinline preload="none" data-inview aria-label="Portatile su un tavolo di legno davanti a una finestra sui campi, con la homepage di Drop"></video></div>
         <figcaption><span class="label acc">01 · Sito</span><h3>La homepage di Drop.</h3><p>«Parliamo la lingua del settore primario»: manifesto, servizi, settori, numeri e casi, disegnati e scritti in codice con l'AI a partire dal design system.</p></figcaption>
       </figure>
       <figure class="out rv">
-        <div class="out-img"><img src="assets/img/drop-mock-monitor.webp" alt="Monitor in uno studio luminoso con la tavola del design system Drop: pattern goccia, Drop Teal, Drop Orange e le versioni del logo" loading="lazy"></div>
+        <div class="out-img"><video src="assets/video/mock-ds-drop-monitor.mp4" poster="assets/img/mock-ds-drop-monitor.webp" muted loop playsinline preload="none" data-inview aria-label="Monitor in uno studio luminoso con la tavola del design system Drop: pattern goccia, Drop Teal, Drop Orange e le versioni del logo"></video></div>
         <figcaption><span class="label acc">02 · Design system</span><h3>Due colori, un pattern, un logo.</h3><p>Drop Teal e Drop Orange con i loro valori Pantone, il pattern goccia e le quattro versioni del marchio, presi dal brand book e pronti nella libreria.</p></figcaption>
       </figure>
       <figure class="out rv">
-        <div class="out-img"><img src="assets/img/drop-mock-phone.webp" alt="Mano che tiene un telefono davanti a un campo di grano, con il sito Drop in versione mobile" loading="lazy"></div>
+        <div class="out-img"><video src="assets/video/mock-ds-drop-phone.mp4" poster="assets/img/mock-ds-drop-phone.webp" muted loop playsinline preload="none" data-inview aria-label="Mano che tiene un telefono davanti a un campo di grano, con il sito Drop in versione mobile"></video></div>
         <figcaption><span class="label acc">03 · Mobile</span><h3>Lo stesso sito, in tasca.</h3><p>Il sito si adatta al telefono con le stesse regole: Sora, teal e arancione.</p></figcaption>
       </figure>
     </div>
@@ -816,7 +820,7 @@ em{font-style:italic;color:var(--acc)}
     <div class="sec-head rv"><span class="label acc">Caso studio · Produttori Arborea</span><span class="label">(Design system · Schede prodotto · Packaging · Video)</span></div>
     <h2 class="sec-title rv">Produttori Arborea: un design system e i template per le schede prodotto.</h2>
     <div class="mock-hero">
-      <img src="assets/img/pa-mock-laptop.webp" alt="Portatile su un tavolo di legno davanti a una finestra sulla campagna, con la palette di dodici colori e le illustrazioni al tratto di Produttori Arborea">
+      <video src="assets/video/mock-ds-pa-laptop.mp4" poster="assets/img/mock-ds-pa-laptop.webp" muted loop playsinline preload="none" data-inview aria-label="Portatile su un tavolo di legno davanti a una finestra sulla campagna, con la palette di dodici colori e le illustrazioni al tratto di Produttori Arborea"></video>
     </div>
     <div class="ds-intro">
       <div class="rv">
@@ -833,7 +837,7 @@ em{font-style:italic;color:var(--acc)}
 
     <div class="ds-outputs">
       <figure class="out out-wide rv">
-        <div class="out-img"><img src="assets/img/pa-mock-tablet.webp" alt="Tablet su un tavolo di cucina in legno con le illustrazioni al tratto di ortaggi e frutta del design system Produttori Arborea" loading="lazy"></div>
+        <div class="out-img"><video src="assets/video/mock-ds-pa-tablet.mp4" poster="assets/img/mock-ds-pa-tablet.webp" muted loop playsinline preload="none" data-inview aria-label="Tablet su un tavolo di cucina in legno con le illustrazioni al tratto di ortaggi e frutta del design system Produttori Arborea"></video></div>
         <figcaption><span class="label acc">01 · Design system</span><h3>Illustrazioni al tratto, pronte per ogni colore.</h3><p>Le illustrazioni del brandbook esistevano solo come immagini. L'AI le ha ridisegnate in vettoriale mantenendo il tratteggio dell'incisione: ora si stampano a qualsiasi misura e si tingono con i dodici colori del sistema.</p></figcaption>
       </figure>
     </div>
@@ -1166,7 +1170,7 @@ em{font-style:italic;color:var(--acc)}
   const exp = $('.expand'), media = $('.expand-media');
   const stmt = $('.statement');
   let mqX = 0, lastY = scrollY, vel = 0;
-  const nav = $('.nav'), spins = $$('[data-spin]'), procs = $$('.proc-img'), mocks = $$('.mock-hero').map(box => ({box, img: $('img', box)}));
+  const nav = $('.nav'), spins = $$('[data-spin]'), procs = $$('.proc-img'), mocks = $$('.mock-hero').map(box => ({box, img: $('img,video', box)}));
 
   // carosello orizzontale guidato dallo scroll verticale
   const hss = $$('[data-hs]').map(box => ({box, track: $('.hs-track', box), dist: 0}));
@@ -1219,7 +1223,7 @@ em{font-style:italic;color:var(--acc)}
       words.forEach((w, i) => w.classList.toggle('on', i < lit));
 
       // mockup del design system: la camera si allontana mentre scorri
-      mocks.forEach(m => m.img.style.setProperty('--z', 1.14 - .14 * clamp(1 - m.box.getBoundingClientRect().top / innerHeight)));
+      mocks.forEach(m => m.img.style.setProperty('--z', (m.img.tagName === 'VIDEO' ? 1.06 : 1.14) - (m.img.tagName === 'VIDEO' ? .06 : .14) * clamp(1 - m.box.getBoundingClientRect().top / innerHeight)));
 
       // screenshot del processo: crescono entrando
       procs.forEach(b => {
