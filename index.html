@@ -240,6 +240,8 @@ em{font-style:italic;color:var(--acc)}
 .tc{position:absolute;left:12px;top:10px;font-size:.7rem;letter-spacing:.1em;color:#fff;background:rgba(15,24,33,.55);padding:5px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
 .beat-on{font-size:1.15rem;line-height:1.3;margin:8px 0 8px;letter-spacing:-.01em}
 .beat-vis{font-size:.95rem;color:var(--mut)}
+#nitto .beat{width:clamp(200px,17vw,270px)}
+#nitto .beat-img{aspect-ratio:9/16}
 .ab-block{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(90px,10vw,140px) var(--gut) 0}
 .ab-text p{color:var(--mut);margin-top:18px;max-width:46ch}
 .ab-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
@@ -375,6 +377,7 @@ em{font-style:italic;color:var(--acc)}
     <a href="#arborea">Arborea</a>
     <a href="#jet-set">Jet Set</a>
     <a href="#tennis">Tennis</a>
+    <a href="#nitto">Nitto</a>
     <a href="#audiovisivo">Audiovisivo</a>
     <a href="#metodo">Metodo</a>
     <a href="#contatti">Contatti</a>
@@ -629,6 +632,50 @@ em{font-style:italic;color:var(--acc)}
       <div class="case-video rv">
         <video src="assets/video/tennis.mp4" poster="assets/img/tennis-poster.webp" muted loop playsinline preload="metadata" aria-label="Video sui dati di tennis e padel in Italia"></video>
         <button class="sound" type="button" aria-pressed="false"><i></i><span>Audio off</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO NITTO ATP FINALS -->
+  <section class="sec case" id="nitto" data-theme="dark">
+    <div class="sec-head rv"><span class="label acc">Video AI · Per OpenEconomics e FITP</span><span class="label">(9:16 · 25 secondi)</span></div>
+    <h2 class="sec-title rv">Nitto ATP Finals 2026: cinque numeri, cinque colpi, una piramide che crolla.</h2>
+    <div class="case-grid">
+      <div class="case-video rv">
+        <video src="assets/video/nitto.mp4" poster="assets/img/nitto-poster.webp" muted loop playsinline preload="metadata" aria-label="Video sull'impatto delle Nitto ATP Finals 2026"></video>
+        <button class="sound" type="button" aria-pressed="false"><i></i><span>Audio off</span></button>
+      </div>
+      <div class="case-info rv">
+        <dl class="facts">
+          <div><dt class="label">Cliente</dt><dd>OpenEconomics, per FITP</dd></div>
+          <div><dt class="label">Dati</dt><dd>Studio SROI ex ante delle Nitto ATP Finals 2026</dd></div>
+          <div><dt class="label">Formato</dt><dd>Verticale 9:16, 25 secondi</dd></div>
+          <div><dt class="label">Audio</dt><dd>Colpi di palla e musica in crescendo</dd></div>
+        </dl>
+        <p class="case-lead">Ogni numero entra sul fotogramma esatto del suo colpo. Il ritmo cresce fino allo smash, poi una pallina fa crollare la piramide e chiude sul logo.</p>
+        <p class="roles"><b>AI:</b> genera il girato di ogni scena (tennisti, pallina, piramide), la musica in crescendo e il codice che trova i colpi nell'audio e ci aggancia i numeri. <b>Io:</b> scrivo lo storyboard e i prompt, scelgo l'ordine dei dati, disegno la grafica con il design system OpenEconomics e gestisco i giri di correzione con il cliente.</p>
+        <ul class="notes">
+          <li><span class="label acc">Sincrono</span>Il numero è pieno sul fotogramma del suono: i colpi li trovo nell'audio delle clip e li verifico sull'immagine.</li>
+          <li><span class="label acc">Continuità</span>La scena del crollo parte dall'ultimo fotogramma della piramide: è la stessa, senza salti.</li>
+          <li><span class="label acc">Leggibilità</span>Dopo ogni colpo il girato va al rallentatore, così il numero resta a schermo il tempo di leggerlo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sb-head rv">
+      <div><span class="label acc">(Storyboard)</span><h3>Otto scene, dal primo rimbalzo al logo.</h3></div>
+      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Scena precedente">←</button><button type="button" class="sb-next" aria-label="Scena successiva">→</button></div>
+    </div>
+    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
+      <div class="sb-track">
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-01.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Apertura</p><p class="beat-on">Nitto ATP Finals 2026 · Impatto</p><p class="beat-vis">Una mano lascia cadere la pallina: il titolo entra sul primo flop.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-02.webp" alt="" loading="lazy"><span class="tc">0:02</span></div><p class="label acc">KPI 1 · Rimbalzo</p><p class="beat-on">196.045 biglietti emessi</p><p class="beat-vis">Rimbalzo ripreso a filo del pavimento.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-03.webp" alt="" loading="lazy"><span class="tc">0:05</span></div><p class="label acc">KPI 2 · Battuta</p><p class="beat-on">2.600 nuovi praticanti persistenti</p><p class="beat-vis">Battuta vista dall'alto, una sola pallina colpita.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-04.webp" alt="" loading="lazy"><span class="tc">0:08</span></div><p class="label acc">KPI 3 · Nastro</p><p class="beat-on">415,7 mln € di benefici sociali, +7,7%</p><p class="beat-vis">La pallina colpisce il nastro della rete.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-05.webp" alt="" loading="lazy"><span class="tc">0:12</span></div><p class="label acc">KPI 4 · Smash, il picco</p><p class="beat-on">SROI 4,87</p><p class="beat-vis">Smash in controluce: il colpo più forte, la musica al massimo.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-06.webp" alt="" loading="lazy"><span class="tc">0:15</span></div><p class="label acc">KPI 5 · La piramide</p><p class="beat-on">ESG 89,75 | AA+</p><p class="beat-vis">La camera si allarga fino a una piramide di palline, ferma.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-07.webp" alt="" loading="lazy"><span class="tc">0:18</span></div><p class="label acc">Il crollo</p><p class="beat-on">Nessun dato</p><p class="beat-vis">Una pallina cade sulla punta e la piramide crolla.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/nitto-08.webp" alt="" loading="lazy"><span class="tc">0:22</span></div><p class="label acc">Chiusura</p><p class="beat-on">We measure what really matters</p><p class="beat-vis">Logo OpenEconomics su Bluette, costruito senza AI.</p></article>
       </div>
     </div>
   </section>
