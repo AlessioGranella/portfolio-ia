@@ -147,6 +147,12 @@ em{font-style:italic;color:var(--acc)}
 .reel-sound[aria-pressed="true"] i b:nth-child(2){animation-delay:-.3s}.reel-sound[aria-pressed="true"] i b:nth-child(3){animation-delay:-.6s}
 @keyframes eq{from{height:2px}to{height:10px}}
 
+.pa-pack{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,32px);padding:0 var(--gut)}
+.pa-pack .out:not(.out-wide) .out-img{aspect-ratio:4/5}
+.pa-pack .out-img img{height:100%;object-fit:cover}
+.pa-pack .out figcaption{margin-top:14px}
+.pa-pack-txt{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,70px);padding:clamp(28px,3vw,44px) var(--gut) 0}
+
 /* INTESTAZIONI */
 .sec{padding:clamp(90px,12vw,170px) 0}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:0 var(--gut);margin-bottom:clamp(40px,6vw,80px)}
@@ -335,6 +341,7 @@ em{font-style:italic;color:var(--acc)}
   .beat{width:78vw}
   .bbp{width:82vw}
   .pa-sheets{grid-template-columns:1fr}
+  .pa-pack,.pa-pack-txt{grid-template-columns:1fr}
   .pa-how ol{grid-template-columns:1fr}
   .ab-block{grid-template-columns:1fr}
   .case-grid.rev .case-video{order:-1}
@@ -735,7 +742,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- CASO STUDIO: PRODUTTORI ARBOREA -->
   <section class="sec case" id="arborea" data-theme="dark">
-    <div class="sec-head rv"><span class="label acc">Case study · Produttori Arborea</span><span class="label">(Design system · Product sheets · Video)</span></div>
+    <div class="sec-head rv"><span class="label acc">Case study · Produttori Arborea</span><span class="label">(Design system · Product sheets · Packaging · Video)</span></div>
     <h2 class="sec-title rv">Produttori Arborea: a design system and templates for product sheets.</h2>
     <div class="mock-hero">
       <img src="../assets/img/pa-mock-laptop.webp" alt="Laptop on a wooden table in front of a window overlooking the countryside, showing the twelve-colour palette and line illustrations of Produttori Arborea">
@@ -780,7 +787,17 @@ em{font-style:italic;color:var(--acc)}
         <li><b>Review the result.</b> The AI checks the render against my previous corrections, written in a file it rereads every time.</li>
       </ol>
     </div>
-    <div class="sb-head rv"><div><span class="label acc">04 · Video</span><h3>The cooperative, told to the employees' children.</h3></div></div>
+    <div class="sb-head rv"><div><span class="label acc">04 · Packaging</span><h3>Primoverde Croccante: the salad bag, photographed without a set.</h3></div></div>
+    <div class="pa-pack">
+      <figure class="out rv"><div class="out-img"><img src="../assets/img/pa-croccante-still-life.webp" alt="Primoverde Croccante salad bag leaning on a bowl of salad on a light counter, with a linen napkin" loading="lazy"></div><figcaption><span class="label acc">Still life</span></figcaption></figure>
+      <figure class="out rv"><div class="out-img"><img src="../assets/img/pa-croccante-flatlay.webp" alt="Primoverde Croccante bag seen from above among radicchio leaves, rocket, a bowl and wooden servers" loading="lazy"></div><figcaption><span class="label acc">Flat lay</span></figcaption></figure>
+      <figure class="out rv"><div class="out-img"><img src="../assets/img/pa-croccante-cucina.webp" alt="Primoverde Croccante bag standing on the counter of a bright kitchen" loading="lazy"></div><figcaption><span class="label acc">Kitchen</span></figcaption></figure>
+    </div>
+    <div class="pa-pack-txt rv">
+      <p class="case-lead">Three product photos for the ready-to-eat salad range, with no photo shoot. The bag carries the real artwork, taken from the print file: brand, copy and weight are all legible.</p>
+      <p class="roles"><b>AI:</b> generates the scenes and the bag with the salad, then a script applies the front from the print PDF and restores the folds, light and reflections of the film. <b>Me:</b> I choose the scenes and the light, check that the artwork stays true to the print file and discard the versions where the AI invents details.</p>
+    </div>
+    <div class="sb-head rv"><div><span class="label acc">05 · Video</span><h3>The cooperative, told to the employees' children.</h3></div></div>
     <div class="wide-wrap">
       <div class="case-video wide rv">
         <video src="../assets/video/pa-bambini.mp4" poster="../assets/img/pa-bambini-poster.webp" muted loop playsinline preload="metadata" aria-label="Produttori Arborea video for the employees' children"></video>
@@ -811,7 +828,7 @@ em{font-style:italic;color:var(--acc)}
       </div>
     </div>
 
-    <div class="sb-head rv"><div><span class="label acc">05 · Vertical video</span><h3>Meridoro: twelve stores in 23 seconds.</h3></div></div>
+    <div class="sb-head rv"><div><span class="label acc">06 · Vertical video</span><h3>Meridoro: twelve stores in 23 seconds.</h3></div></div>
     <div class="case-grid">
       <div class="case-video rv">
         <video src="../assets/video/meridoro-punti-vendita.mp4" poster="../assets/img/meridoro-pv-poster.webp" muted loop playsinline preload="metadata" aria-label="Vertical video about the Meridoro stores"></video>

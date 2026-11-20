@@ -147,6 +147,12 @@ em{font-style:italic;color:var(--acc)}
 .reel-sound[aria-pressed="true"] i b:nth-child(2){animation-delay:-.3s}.reel-sound[aria-pressed="true"] i b:nth-child(3){animation-delay:-.6s}
 @keyframes eq{from{height:2px}to{height:10px}}
 
+.pa-pack{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,32px);padding:0 var(--gut)}
+.pa-pack .out:not(.out-wide) .out-img{aspect-ratio:4/5}
+.pa-pack .out-img img{height:100%;object-fit:cover}
+.pa-pack .out figcaption{margin-top:14px}
+.pa-pack-txt{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,70px);padding:clamp(28px,3vw,44px) var(--gut) 0}
+
 /* INTESTAZIONI */
 .sec{padding:clamp(90px,12vw,170px) 0}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:0 var(--gut);margin-bottom:clamp(40px,6vw,80px)}
@@ -335,6 +341,7 @@ em{font-style:italic;color:var(--acc)}
   .beat{width:78vw}
   .bbp{width:82vw}
   .pa-sheets{grid-template-columns:1fr}
+  .pa-pack,.pa-pack-txt{grid-template-columns:1fr}
   .pa-how ol{grid-template-columns:1fr}
   .ab-block{grid-template-columns:1fr}
   .case-grid.rev .case-video{order:-1}
@@ -735,7 +742,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- CASO STUDIO: PRODUTTORI ARBOREA -->
   <section class="sec case" id="arborea" data-theme="dark">
-    <div class="sec-head rv"><span class="label acc">Caso studio · Produttori Arborea</span><span class="label">(Design system · Schede prodotto · Video)</span></div>
+    <div class="sec-head rv"><span class="label acc">Caso studio · Produttori Arborea</span><span class="label">(Design system · Schede prodotto · Packaging · Video)</span></div>
     <h2 class="sec-title rv">Produttori Arborea: un design system e i template per le schede prodotto.</h2>
     <div class="mock-hero">
       <img src="assets/img/pa-mock-laptop.webp" alt="Portatile su un tavolo di legno davanti a una finestra sulla campagna, con la palette di dodici colori e le illustrazioni al tratto di Produttori Arborea">
@@ -780,7 +787,17 @@ em{font-style:italic;color:var(--acc)}
         <li><b>Si giudica il risultato.</b> L'AI guarda il render con le mie correzioni precedenti, scritte in un file che rilegge ogni volta.</li>
       </ol>
     </div>
-    <div class="sb-head rv"><div><span class="label acc">04 · Video</span><h3>La cooperativa raccontata ai figli dei dipendenti.</h3></div></div>
+    <div class="sb-head rv"><div><span class="label acc">04 · Packaging</span><h3>Primoverde Croccante: la busta di insalata, fotografata senza set.</h3></div></div>
+    <div class="pa-pack">
+      <figure class="out rv"><div class="out-img"><img src="assets/img/pa-croccante-still-life.webp" alt="Busta di insalata Primoverde Croccante appoggiata a una ciotola di insalata su un piano chiaro, con un tovagliolo di lino" loading="lazy"></div><figcaption><span class="label acc">Still life</span></figcaption></figure>
+      <figure class="out rv"><div class="out-img"><img src="assets/img/pa-croccante-flatlay.webp" alt="Busta Primoverde Croccante vista dall'alto tra foglie di radicchio, rucola, una ciotola e posate di legno" loading="lazy"></div><figcaption><span class="label acc">Flat lay</span></figcaption></figure>
+      <figure class="out rv"><div class="out-img"><img src="assets/img/pa-croccante-cucina.webp" alt="Busta Primoverde Croccante in piedi sul piano di una cucina luminosa" loading="lazy"></div><figcaption><span class="label acc">Cucina</span></figcaption></figure>
+    </div>
+    <div class="pa-pack-txt rv">
+      <p class="case-lead">Tre foto prodotto per la quarta gamma, senza uno shooting. Sulla busta c'è la grafica vera, presa dall'impianto di stampa: si leggono marchio, testi e grammatura.</p>
+      <p class="roles"><b>AI:</b> genera le scene e la busta con l'insalata, poi uno script applica il fronte dal PDF di stampa e riprende pieghe, luci e riflessi della pellicola. <b>Io:</b> scelgo le scene e la luce, controllo che la grafica resti fedele al file di stampa e scarto le versioni in cui l'AI inventa dettagli.</p>
+    </div>
+    <div class="sb-head rv"><div><span class="label acc">05 · Video</span><h3>La cooperativa raccontata ai figli dei dipendenti.</h3></div></div>
     <div class="wide-wrap">
       <div class="case-video wide rv">
         <video src="assets/video/pa-bambini.mp4" poster="assets/img/pa-bambini-poster.webp" muted loop playsinline preload="metadata" aria-label="Video di Produttori Arborea per i figli dei dipendenti"></video>
@@ -811,7 +828,7 @@ em{font-style:italic;color:var(--acc)}
       </div>
     </div>
 
-    <div class="sb-head rv"><div><span class="label acc">05 · Video verticale</span><h3>Meridoro: dodici punti vendita in 23 secondi.</h3></div></div>
+    <div class="sb-head rv"><div><span class="label acc">06 · Video verticale</span><h3>Meridoro: dodici punti vendita in 23 secondi.</h3></div></div>
     <div class="case-grid">
       <div class="case-video rv">
         <video src="assets/video/meridoro-punti-vendita.mp4" poster="assets/img/meridoro-pv-poster.webp" muted loop playsinline preload="metadata" aria-label="Video verticale sui punti vendita Meridoro"></video>
