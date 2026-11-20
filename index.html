@@ -167,6 +167,10 @@ em{font-style:italic;color:var(--acc)}
 .hs-track .out:not(.out-wide) .out-img{aspect-ratio:4/5}
 .hs-track .out:not(.out-wide) .out-img img{height:100%;object-fit:cover}
 .hs-track figcaption{margin-top:14px}
+.hs-sticky .sb-head,#drop .hs-sticky .sb-head{padding-top:0}
+.hs-track .beat{flex:0 0 auto;width:min(30vw,60vh,460px)}
+#nitto .hs-track .beat{width:min(17vw,29vh,270px)}
+.hs-track .bbp{flex:0 0 auto;width:min(38vw,78vh,600px)}
 
 .sb-mock video{width:100%;height:100%;object-fit:cover;display:block}
 .sb-mock figcaption p{max-width:62ch;color:var(--mut);font-size:1rem;line-height:1.5;margin:0}
@@ -341,6 +345,10 @@ em{font-style:italic;color:var(--acc)}
   .hs-track{overflow-x:auto;scroll-snap-type:x mandatory;transform:none!important;padding-bottom:6px;scrollbar-width:none}
   .hs-track::-webkit-scrollbar{display:none}
   .hs-track .out{width:76vw;scroll-snap-align:center}
+  .hs-track .beat,.hs-track .bbp{scroll-snap-align:start}
+  .hs-track .beat{width:78vw}
+  #nitto .hs-track .beat{width:58vw}
+  .hs-track .bbp{width:82vw}
   .nav-links a:not(.btn){display:none}
   .hbar{display:none}
   .hero-top{grid-template-columns:1fr 1fr}
@@ -557,12 +565,10 @@ em{font-style:italic;color:var(--acc)}
 
     <figure class="sb-mock rv"><div class="out-img"><video src="assets/video/mock-sb-nitto.mp4" poster="assets/img/mock-sb-nitto.webp" muted loop playsinline preload="none" data-inview aria-label="Pagina web dello storyboard Nitto ATP Finals aperta su uno schermo, in una scena generata con l'AI"></video></div><figcaption><span class="label acc">(Pagina storyboard · con commenti)</span><p>Il cliente commenta ogni scena direttamente nella pagina, firma con il suo nome e scarica tutti i commenti in un PDF, scena per scena. Le correzioni arrivano ordinate in un solo giro e il lavoro tra noi va più veloce.</p></figcaption></figure>
 
-    <div class="sb-head rv">
-      <div><span class="label acc">(Storyboard)</span><h3>Otto scene, dal primo rimbalzo al logo.</h3></div>
-      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Scena precedente">←</button><button type="button" class="sb-next" aria-label="Scena successiva">→</button></div>
-    </div>
-    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
-      <div class="sb-track">
+    <div class="hs" data-hs>
+      <div class="hs-sticky">
+        <div class="sb-head"><div><span class="label acc">(Storyboard)</span><h3>Otto scene, dal primo rimbalzo al logo.</h3></div></div>
+        <div class="hs-track">
           <article class="beat"><div class="beat-img"><img src="assets/img/nitto-01.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Apertura</p><p class="beat-on">Nitto ATP Finals 2026 · Analisi di impatto sociale / ESG</p><p class="beat-vis">Una mano lascia cadere la pallina: il titolo entra sul primo flop.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/nitto-02.webp" alt="" loading="lazy"><span class="tc">0:02</span></div><p class="label acc">KPI 1 · Rimbalzo</p><p class="beat-on">196.045 biglietti emessi</p><p class="beat-vis">Rimbalzo ripreso a filo del pavimento.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/nitto-03.webp" alt="" loading="lazy"><span class="tc">0:05</span></div><p class="label acc">KPI 2 · Battuta</p><p class="beat-on">2.600 nuovi praticanti persistenti</p><p class="beat-vis">Battuta vista dall'alto, una sola pallina colpita.</p></article>
@@ -571,6 +577,7 @@ em{font-style:italic;color:var(--acc)}
           <article class="beat"><div class="beat-img"><img src="assets/img/nitto-06.webp" alt="" loading="lazy"><span class="tc">0:15</span></div><p class="label acc">KPI 5 · La piramide</p><p class="beat-on">ESG 89,75 | AA+</p><p class="beat-vis">La camera si allarga fino a una piramide di palline, ferma.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/nitto-07.webp" alt="" loading="lazy"><span class="tc">0:18</span></div><p class="label acc">Il crollo</p><p class="beat-on">Nessun dato</p><p class="beat-vis">Una pallina cade sulla punta e la piramide crolla.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/nitto-08.webp" alt="" loading="lazy"><span class="tc">0:22</span></div><p class="label acc">Chiusura</p><p class="beat-on">We measure what really matters</p><p class="beat-vis">Logo OpenEconomics su Bluette, costruito senza AI.</p></article>
+        </div>
       </div>
     </div>
   </section>
@@ -600,12 +607,10 @@ em{font-style:italic;color:var(--acc)}
 
     <figure class="sb-mock rv"><div class="out-img"><video src="assets/video/mock-sb-rieti.mp4" poster="assets/img/mock-sb-rieti.webp" muted loop playsinline preload="none" data-inview aria-label="Pagina web dello storyboard Rieti aperta su uno schermo, in una scena generata con l'AI"></video></div><figcaption><span class="label acc">(Pagina storyboard · con commenti)</span><p>Trentatré scene, ognuna con il suo campo commento. Il cliente scrive, firma e scarica il PDF con fotogramma, schede e nota di ogni scena: un unico documento su cui lavoriamo insieme.</p></figcaption></figure>
 
-    <div class="sb-head rv">
-      <div><span class="label acc">(Storyboard)</span><h3>Trentatré scene, dai dati alle risorse.</h3></div>
-      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Scena precedente">←</button><button type="button" class="sb-next" aria-label="Scena successiva">→</button></div>
-    </div>
-    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
-      <div class="sb-track">
+    <div class="hs" data-hs>
+      <div class="hs-sticky">
+        <div class="sb-head"><div><span class="label acc">(Storyboard)</span><h3>Trentatré scene, dai dati alle risorse.</h3></div></div>
+        <div class="hs-track">
           <article class="beat"><div class="beat-img"><img src="assets/img/rieti-01.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Apertura</p><p class="beat-on">Dalla rendicontazione dei costi alla misurazione dei risultati</p><p class="beat-vis">Il palazzo comunale di Rieti, foto animata.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/rieti-02.webp" alt="" loading="lazy"><span class="tc">0:18</span></div><p class="label acc">Il territorio</p><p class="beat-on">73 comuni, circa 150 mila abitanti</p><p class="beat-vis">La mappa della provincia si disegna comune per comune.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/rieti-04.webp" alt="" loading="lazy"><span class="tc">0:44</span></div><p class="label acc">Ambiente</p><p class="beat-on">3,2% di suolo consumato</p><p class="beat-vis">Il lago del Salto: le barre confrontano Rieti con il resto del Lazio.</p></article>
@@ -616,6 +621,7 @@ em{font-style:italic;color:var(--acc)}
           <article class="beat"><div class="beat-img"><img src="assets/img/rieti-24.webp" alt="" loading="lazy"><span class="tc">5:19</span></div><p class="label acc">Energia</p><p class="beat-on">5 su 26 comunità energetiche del Lazio</p><p class="beat-vis">Un campo fotovoltaico, con le 26 comunità in griglia.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/rieti-34.webp" alt="" loading="lazy"><span class="tc">6:46</span></div><p class="label acc">Le risorse</p><p class="beat-on">Laghi, santuari e borghi da valorizzare</p><p class="beat-vis">Sulla mappa si accendono i luoghi dell'elenco.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/rieti-40.webp" alt="" loading="lazy"><span class="tc">7:46</span></div><p class="label acc">Chiusura</p><p class="beat-on">OpenEconomics · ANCI Lazio · Regione Lazio</p><p class="beat-vis">I tre loghi su Bluette, costruiti senza AI.</p></article>
+        </div>
       </div>
     </div>
   </section>
@@ -640,12 +646,10 @@ em{font-style:italic;color:var(--acc)}
 
     <figure class="sb-mock rv"><div class="out-img"><video src="assets/video/mock-sb-audiovisivo.mp4" poster="assets/img/mock-sb-audiovisivo.webp" muted loop playsinline preload="none" data-inview aria-label="Pagina web dello storyboard Audiovisivo aperta su uno schermo, in una scena generata con l'AI"></video></div><figcaption><span class="label acc">(Pagina storyboard)</span><span class="label">Lo storyboard condiviso con il cliente: video montato e beat per beat.</span></figcaption></figure>
 
-    <div class="sb-head rv">
-      <div><span class="label acc">(Storyboard)</span><h3>Nove beat, dalla domanda iniziale allo SROI.</h3></div>
-      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Beat precedente">←</button><button type="button" class="sb-next" aria-label="Beat successivo">→</button></div>
-    </div>
-    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
-      <div class="sb-track">
+    <div class="hs" data-hs>
+      <div class="hs-sticky">
+        <div class="sb-head"><div><span class="label acc">(Storyboard)</span><h3>Nove beat, dalla domanda iniziale allo SROI.</h3></div></div>
+        <div class="hs-track">
           <article class="beat"><div class="beat-img"><img src="assets/img/av-01-camera.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Beat 01 · Gancio</p><p class="beat-on">“How much is one euro really worth, once it’s invested in film and TV?”</p><p class="beat-vis">Una cinepresa 35mm su un tavolo. Zoom lento fino a entrare nella lente.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/av-02-set-lights.webp" alt="" loading="lazy"><span class="tc">0:07</span></div><p class="label acc">Beat 02 · Input</p><p class="beat-on">€8 BN — Total audiovisual spend in 2023</p><p class="beat-vis">Le luci di un set vuoto si accendono una dopo l’altra.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/av-03-marquee.webp" alt="" loading="lazy"><span class="tc">0:15</span></div><p class="label acc">Beat 03 · Valore della produzione</p><p class="beat-on">€23.5 BN — Production value generated</p><p class="beat-vis">L’ingresso di un cinema di notte, con l’insegna CINEMA.</p></article>
@@ -655,6 +659,7 @@ em{font-style:italic;color:var(--acc)}
           <article class="beat"><div class="beat-img"><img src="assets/img/av-07-audience.webp" alt="" loading="lazy"><span class="tc">0:44</span></div><p class="label acc">Beat 07 · Climax SROI</p><p class="beat-on">4.5 — Every €1 invested returns €4.5 in social value</p><p class="beat-vis">Una sala piena vista dallo schermo. La camera arretra.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/av-08-village.webp" alt="" loading="lazy"><span class="tc">0:57</span></div><p class="label acc">Beat 08 · Impatti intangibili</p><p class="beat-on">Wellbeing, culture, film tourism</p><p class="beat-vis">Turisti all’alba su un’isola del Mediterraneo.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/av-closing.webp" alt="" loading="lazy"><span class="tc">1:06</span></div><p class="label acc">Beat 09 · Chiusura</p><p class="beat-on">“We measure what really matters”</p><p class="beat-vis">Card in Bluette con il logo OpenEconomics, costruita senza AI.</p></article>
+        </div>
       </div>
     </div>
 
@@ -708,18 +713,17 @@ em{font-style:italic;color:var(--acc)}
 
     <figure class="sb-mock rv"><div class="out-img"><video src="assets/video/mock-sb-apa.mp4" poster="assets/img/mock-sb-apa.webp" muted loop playsinline preload="none" data-inview aria-label="Pagina web dello storyboard APA aperta su uno schermo, in una scena generata con l'AI"></video></div><figcaption><span class="label acc">(Pagina storyboard)</span><span class="label">Lo storyboard condiviso con il cliente: dati, prompt e note di ogni scena.</span></figcaption></figure>
 
-    <div class="sb-head rv">
-      <div><span class="label acc">(Storyboard)</span><h3>Sei scene, dal set al logo.</h3></div>
-      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Scena precedente">←</button><button type="button" class="sb-next" aria-label="Scena successiva">→</button></div>
-    </div>
-    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
-      <div class="sb-track">
+    <div class="hs" data-hs>
+      <div class="hs-sticky">
+        <div class="sb-head"><div><span class="label acc">(Storyboard)</span><h3>Sei scene, dal set al logo.</h3></div></div>
+        <div class="hs-track">
           <article class="beat"><div class="beat-img"><img src="assets/img/apa-01.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Apertura · Il set</p><p class="beat-on">L'audiovisivo cambia formato</p><p class="beat-vis">Troupe e cinepresa su un set: la cornice 16:9 ruota fino al 9:16.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/apa-02.webp" alt="" loading="lazy"><span class="tc">0:03</span></div><p class="label acc">Dato 1 · Mercato globale</p><p class="beat-on">Da 11 a 14 miliardi $ entro fine 2026</p><p class="beat-vis">Mani che tengono uno smartphone: sullo schermo un dialogo girato come un film.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/apa-03.webp" alt="" loading="lazy"><span class="tc">0:06</span></div><p class="label acc">Dato 2 · Download</p><p class="beat-on">+140% di download delle app</p><p class="beat-vis">Un pollice scorre un feed fatto di scene da cinema.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/apa-04.webp" alt="" loading="lazy"><span class="tc">0:10</span></div><p class="label acc">Dato 3 · Top 30 in Italia</p><p class="beat-on">13 app su 30 per incassi</p><p class="beat-vis">Una TV accesa in una stanza buia, la camera si avvicina lenta.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/apa-05.webp" alt="" loading="lazy"><span class="tc">0:13</span></div><p class="label acc">Invito</p><p class="beat-on">Scopri l'analisi completa nell'8° Rapporto APA</p><p class="beat-vis">Le immagini sfumano nel viola pieno.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/apa-06.webp" alt="" loading="lazy"><span class="tc">0:15</span></div><p class="label acc">Chiusura</p><p class="beat-on">We measure what really matters</p><p class="beat-vis">Il logo entra sull'ultimo colpo della musica.</p></article>
+        </div>
       </div>
     </div>
   </section>
@@ -744,18 +748,17 @@ em{font-style:italic;color:var(--acc)}
       </dl>
     </div>
 
-    <div class="sb-head rv">
-      <div><span class="label acc">(Brand book)</span><h3>Dalla missione alle applicazioni, in 43 pagine.</h3></div>
-      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Pagina precedente">←</button><button type="button" class="sb-next" aria-label="Pagina successiva">→</button></div>
-    </div>
-    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
-      <div class="sb-track">
+    <div class="hs" data-hs>
+      <div class="hs-sticky">
+        <div class="sb-head"><div><span class="label acc">(Brand book)</span><h3>Dalla missione alle applicazioni, in 43 pagine.</h3></div></div>
+        <div class="hs-track">
           <figure class="bbp"><img src="assets/img/drop-bb-08.webp" alt="Brand book Drop, pagina 8: La missione" loading="lazy"><figcaption class="label">(p. 8) La missione</figcaption></figure>
           <figure class="bbp"><img src="assets/img/drop-bb-16.webp" alt="Brand book Drop, pagina 16: Il marchio" loading="lazy"><figcaption class="label">(p. 16) Il marchio</figcaption></figure>
           <figure class="bbp"><img src="assets/img/drop-bb-26.webp" alt="Brand book Drop, pagina 26: Due colori" loading="lazy"><figcaption class="label">(p. 26) Due colori</figcaption></figure>
           <figure class="bbp"><img src="assets/img/drop-bb-32.webp" alt="Brand book Drop, pagina 32: Otto pesi di Sora" loading="lazy"><figcaption class="label">(p. 32) Otto pesi di Sora</figcaption></figure>
           <figure class="bbp"><img src="assets/img/drop-bb-36.webp" alt="Brand book Drop, pagina 36: La firma concentrica" loading="lazy"><figcaption class="label">(p. 36) La firma concentrica</figcaption></figure>
           <figure class="bbp"><img src="assets/img/drop-bb-40.webp" alt="Brand book Drop, pagina 40: Il brand nello spazio" loading="lazy"><figcaption class="label">(p. 40) Il brand nello spazio</figcaption></figure>
+        </div>
       </div>
     </div>
 
@@ -896,12 +899,10 @@ em{font-style:italic;color:var(--acc)}
     </div>
     <figure class="sb-mock rv"><div class="out-img"><video src="assets/video/mock-sb-pa-bambini.mp4" poster="assets/img/mock-sb-pa-bambini.webp" muted loop playsinline preload="none" data-inview aria-label="Pagina web dello storyboard Produttori Arborea aperta su uno schermo, in una scena generata con l'AI"></video></div><figcaption><span class="label acc">(Pagina storyboard)</span><span class="label">Lo storyboard condiviso con il cliente: il testo della cooperativa, il video e le scene.</span></figcaption></figure>
 
-    <div class="sb-head rv">
-      <div><span class="label acc">(Storyboard)</span><h3>Sette scene, dal 1955 a oggi.</h3></div>
-      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Scena precedente">←</button><button type="button" class="sb-next" aria-label="Scena successiva">→</button></div>
-    </div>
-    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
-      <div class="sb-track">
+    <div class="hs" data-hs>
+      <div class="hs-sticky">
+        <div class="sb-head"><div><span class="label acc">(Storyboard)</span><h3>Sette scene, dal 1955 a oggi.</h3></div></div>
+        <div class="hs-track">
           <article class="beat"><div class="beat-img"><img src="assets/img/pa-bambini-01.webp" alt="" loading="lazy"><span class="tc">0:04</span></div><p class="label acc">Come tutto è iniziato</p><p class="beat-on">1955 · Arborea</p><p class="beat-vis">Foto storiche dell'archivio, con un lento movimento di camera.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/pa-bambini-02.webp" alt="" loading="lazy"><span class="tc">0:18</span></div><p class="label acc">La cooperativa oggi</p><p class="beat-on">300 soci, 180 dipendenti</p><p class="beat-vis">I numeri entrano quando la voce li dice.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/pa-bambini-03.webp" alt="" loading="lazy"><span class="tc">0:27</span></div><p class="label acc">Primoverde</p><p class="beat-on">Patate, carote, angurie</p><p class="beat-vis">Ogni prodotto dura quanto la parola che lo nomina.</p></article>
@@ -910,6 +911,7 @@ em{font-style:italic;color:var(--acc)}
           <article class="beat"><div class="beat-img"><img src="assets/img/pa-bambini-06.webp" alt="" loading="lazy"><span class="tc">0:58</span></div><p class="label acc">Le persone</p><p class="beat-on">Ogni lavoro è importante</p><p class="beat-vis">Una persona per inquadratura, ognuna nel suo lavoro.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/pa-bambini-07.webp" alt="" loading="lazy"><span class="tc">1:09</span></div><p class="label acc">Il finale</p><p class="beat-on">Anche mamma e papà</p><p class="beat-vis">La sede di oggi, con il marchio nuovo sulla facciata.</p></article>
           <article class="beat"><div class="beat-img"><img src="assets/img/pa-bambini-08.webp" alt="" loading="lazy"><span class="tc">1:13</span></div><p class="label acc">Firma</p><p class="beat-on">Produttori Arborea</p><p class="beat-vis">Il logo della cooperativa e i tre marchi, nei loro colori.</p></article>
+        </div>
       </div>
     </div>
 
@@ -1114,18 +1116,6 @@ em{font-style:italic;color:var(--acc)}
     new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) vid.play().catch(() => {}); else vid.pause();
     }), {threshold: .35}).observe(vid);
-  });
-
-  // strisce trascinabili (storyboard, brand book): trascina, frecce
-  $$('.sb').forEach(sb => {
-    let down = false, sx = 0, sl = 0;
-    sb.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl = sb.scrollLeft; });
-    addEventListener('pointermove', e => { if (!down) return; const d = e.clientX - sx; if (Math.abs(d) > 4) sb.classList.add('drag'); sb.scrollLeft = sl - d; });
-    addEventListener('pointerup', () => { down = false; sb.classList.remove('drag'); });
-    const head = sb.previousElementSibling;
-    const step = () => sb.querySelector('.sb-track > *').offsetWidth + 24;
-    $('.sb-prev', head).addEventListener('click', () => sb.scrollBy({left: -step(), behavior: 'smooth'}));
-    $('.sb-next', head).addEventListener('click', () => sb.scrollBy({left: step(), behavior: 'smooth'}));
   });
 
   // prima e dopo
