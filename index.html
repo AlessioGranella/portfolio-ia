@@ -139,6 +139,14 @@ em{font-style:italic;color:var(--acc)}
 .expand-media img,.expand-media video{width:100%;height:100%;object-fit:cover;transform:scale(var(--s,1.25));display:block}
 .expand-cap{position:absolute;left:var(--gut);right:var(--gut);bottom:44px;display:flex;justify-content:space-between;color:#f0efee;mix-blend-mode:difference;z-index:2}
 
+.reel-sound{position:absolute;right:var(--gut);top:96px;z-index:3;display:inline-flex;align-items:center;gap:10px;font:500 .72rem/1 inherit;text-transform:uppercase;letter-spacing:.14em;color:#f0efee;background:rgba(15,24,33,.45);border:1px solid rgba(240,239,238,.5);border-radius:999px;padding:11px 16px;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .3s}
+.reel-sound:hover{background:rgba(15,24,33,.7)}
+.reel-sound i{display:inline-flex;gap:2px;align-items:flex-end;height:10px}
+.reel-sound i b{width:2px;height:3px;background:currentColor;transition:height .2s}
+.reel-sound[aria-pressed="true"] i b{animation:eq .9s ease-in-out infinite alternate}
+.reel-sound[aria-pressed="true"] i b:nth-child(2){animation-delay:-.3s}.reel-sound[aria-pressed="true"] i b:nth-child(3){animation-delay:-.6s}
+@keyframes eq{from{height:2px}to{height:10px}}
+
 /* INTESTAZIONI */
 .sec{padding:clamp(90px,12vw,170px) 0}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:0 var(--gut);margin-bottom:clamp(40px,6vw,80px)}
@@ -409,7 +417,8 @@ em{font-style:italic;color:var(--acc)}
   <!-- IMMAGINE CHE SI ALLARGA -->
   <section class="expand" data-theme="light">
     <div class="expand-sticky">
-      <div class="expand-media"><video src="assets/video/reel.mp4" poster="assets/img/reel-poster.webp" muted loop playsinline autoplay preload="auto" data-cues="[[0.0,&quot;OpenEconomics · APA&quot;],[1.96,&quot;OpenEconomics · Rieti&quot;],[3.92,&quot;OpenEconomics · Drop&quot;],[6.28,&quot;OpenEconomics · Viterbo&quot;],[8.24,&quot;Produttori Arborea · Meridoro&quot;],[10.6,&quot;OpenEconomics · APA&quot;],[12.76,&quot;OpenEconomics · Viterbo&quot;],[14.52,&quot;OpenEconomics · Drop&quot;],[16.88,&quot;OpenEconomics · APA&quot;],[18.84,&quot;Produttori Arborea&quot;],[21.0,&quot;OpenEconomics · Rieti&quot;],[22.76,&quot;OpenEconomics · APA&quot;],[24.52,&quot;Produttori Arborea&quot;],[26.68,&quot;OpenEconomics · Viterbo&quot;],[28.44,&quot;Drop · OpenEconomics&quot;],[30.8,&quot;OpenEconomics · APA&quot;],[32.56,&quot;OpenEconomics · Rieti&quot;],[34.32,&quot;Produttori Arborea · Meridoro&quot;],[36.48,&quot;OpenEconomics · APA&quot;],[38.24,&quot;OpenEconomics · Viterbo&quot;],[40.2,&quot;OpenEconomics · APA&quot;],[42.16,&quot;OpenEconomics · Rieti&quot;],[43.92,&quot;OpenEconomics · APA&quot;],[46.08,&quot;OpenEconomics · Nitto ATP Finals&quot;],[48.44,&quot;OpenEconomics · Viterbo&quot;],[50.2,&quot;OpenEconomics · Rieti&quot;],[51.96,&quot;OpenEconomics · APA&quot;],[53.72,&quot;Drop · Acqua di Sardegna&quot;],[56.08,&quot;OpenEconomics · Rieti&quot;],[57.84,&quot;OpenEconomics · Viterbo&quot;]]" aria-label="Showreel di 60 secondi con spezzoni dei video realizzati con l'AI per OpenEconomics, Produttori Arborea e Drop"></video></div>
+      <div class="expand-media"><video src="assets/video/reel.mp4" poster="assets/img/reel-poster.webp" muted loop playsinline autoplay preload="auto" data-cues="[[0.0,&quot;OpenEconomics · APA&quot;],[2.0,&quot;OpenEconomics · Rieti&quot;],[4.0,&quot;OpenEconomics · Drop&quot;],[6.5,&quot;OpenEconomics · Viterbo&quot;],[8.5,&quot;Produttori Arborea · Meridoro&quot;],[10.5,&quot;OpenEconomics · APA&quot;],[12.5,&quot;OpenEconomics · Viterbo&quot;],[14.5,&quot;OpenEconomics · Drop&quot;],[17.0,&quot;OpenEconomics · APA&quot;],[19.0,&quot;Produttori Arborea&quot;],[21.0,&quot;OpenEconomics · Rieti&quot;],[22.5,&quot;OpenEconomics · APA&quot;],[24.0,&quot;Produttori Arborea&quot;],[26.0,&quot;OpenEconomics · Viterbo&quot;],[28.0,&quot;Drop · OpenEconomics&quot;],[30.5,&quot;OpenEconomics · APA&quot;],[32.0,&quot;OpenEconomics · Rieti&quot;],[33.5,&quot;Produttori Arborea · Meridoro&quot;],[35.5,&quot;OpenEconomics · APA&quot;],[37.5,&quot;OpenEconomics · Viterbo&quot;],[39.5,&quot;OpenEconomics · APA&quot;],[41.5,&quot;OpenEconomics · Rieti&quot;],[43.5,&quot;OpenEconomics · APA&quot;],[45.5,&quot;OpenEconomics · Nitto ATP Finals&quot;],[48.0,&quot;OpenEconomics · Viterbo&quot;],[50.0,&quot;OpenEconomics · Rieti&quot;],[51.5,&quot;OpenEconomics · APA&quot;],[53.5,&quot;Drop · Acqua di Sardegna&quot;],[56.0,&quot;OpenEconomics · Rieti&quot;],[58.0,&quot;OpenEconomics · Viterbo&quot;]]" aria-label="Showreel di 60 secondi con spezzoni dei video realizzati con l'AI per OpenEconomics, Produttori Arborea e Drop"></video></div>
+      <button class="reel-sound" type="button" aria-pressed="false" data-on="Audio attivo" data-off="Attiva l'audio"><i aria-hidden="true"><b></b><b></b><b></b></i><span>Attiva l'audio</span></button>
       <div class="expand-cap"><span class="label" style="color:inherit" data-reel-cap>(OpenEconomics · APA)</span><span class="label" style="color:inherit">Showreel · Video con l'AI</span></div>
     </div>
   </section>
@@ -421,7 +430,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- CASO STUDIO: DESIGN SYSTEM OPENECONOMICS -->
   <section class="sec case" id="design-system" data-theme="light">
-    <div class="sec-head rv"><span class="label acc">OpenEconomics · 01/05 · Caso studio</span><span class="label">(Design system · v0.6)</span></div>
+    <div class="sec-head rv"><span class="label acc">OpenEconomics · 01/06 · Caso studio</span><span class="label">(Design system · v0.6)</span></div>
     <h2 class="sec-title rv">Il design system di OpenEconomics: una sola fonte per siti, report, grafici e social.</h2>
     <div class="mock-hero">
       <img src="assets/img/oe-mock-laptop.webp" alt="Portatile su una scrivania con una pagina di sito OpenEconomics composta con i blocchi del design system: hero, numeri e card dei prodotti">
@@ -461,7 +470,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- VIDEO TENNIS -->
   <section class="sec case" id="tennis" data-theme="dark">
-    <div class="sec-head rv"><span class="label acc">OpenEconomics · 02/05 · Video per FITP</span><span class="label">(9:16 · 13 secondi)</span></div>
+    <div class="sec-head rv"><span class="label acc">OpenEconomics · 02/06 · Video per FITP</span><span class="label">(9:16 · 13 secondi)</span></div>
     <h2 class="sec-title rv">Tennis e padel in Italia: i dati entrano sul colpo di palla.</h2>
     <div class="case-grid rev">
       <div class="case-info rv">
@@ -488,7 +497,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- VIDEO NITTO ATP FINALS -->
   <section class="sec case" id="nitto" data-theme="light">
-    <div class="sec-head rv"><span class="label acc">OpenEconomics · 03/05 · Video AI per FITP</span><span class="label">(9:16 · 25 secondi)</span></div>
+    <div class="sec-head rv"><span class="label acc">OpenEconomics · 03/06 · Video AI per FITP</span><span class="label">(9:16 · 25 secondi)</span></div>
     <h2 class="sec-title rv">Nitto ATP Finals 2026: cinque numeri, cinque colpi, una piramide che crolla.</h2>
     <div class="case-grid">
       <div class="case-video rv">
@@ -532,7 +541,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- VIDEO RIETI -->
   <section class="sec case" id="rieti" data-theme="dark">
-    <div class="sec-head rv"><span class="label acc">OpenEconomics · 04/05 · Video per ANCI Lazio e Regione Lazio</span><span class="label">(16:9 · 7:52)</span></div>
+    <div class="sec-head rv"><span class="label acc">OpenEconomics · 04/06 · Video per ANCI Lazio e Regione Lazio</span><span class="label">(16:9 · 7:52)</span></div>
     <h2 class="sec-title rv">La provincia di Rieti in un video: ogni dato entra quando la voce lo dice.</h2>
     <div class="wide-wrap">
       <div class="case-video wide rv">
@@ -575,7 +584,7 @@ em{font-style:italic;color:var(--acc)}
 
   <!-- VIDEO AUDIOVISIVO -->
   <section class="sec case" id="audiovisivo" data-theme="light">
-    <div class="sec-head rv"><span class="label acc">OpenEconomics · 05/05 · Video per APA</span><span class="label">(16:9 · 1:14)</span></div>
+    <div class="sec-head rv"><span class="label acc">OpenEconomics · 05/06 · Video per APA</span><span class="label">(16:9 · 1:14)</span></div>
     <h2 class="sec-title rv">Lo studio sul settore audiovisivo italiano, raccontato in nove scene.</h2>
     <div class="wide-wrap">
       <div class="case-video wide rv">
@@ -630,8 +639,51 @@ em{font-style:italic;color:var(--acc)}
     </div>
   </section>
 
+
+  <!-- VIDEO APA: MICRODRAMA -->
+  <section class="sec case" id="apa" data-theme="dark">
+    <div class="sec-head rv"><span class="label acc">OpenEconomics · 06/06 · Video AI per APA</span><span class="label">(9:16 · 17 secondi)</span></div>
+    <h2 class="sec-title rv">Microdrama: tre numeri sul formato che sta cambiando l'audiovisivo.</h2>
+    <div class="case-grid">
+      <div class="case-video rv">
+        <video src="assets/video/apa.mp4" poster="assets/img/apa-poster.webp" muted loop playsinline preload="metadata" aria-label="Video sui microdrama per l'8° Rapporto sulla Produzione Audiovisiva Nazionale di APA"></video>
+        <button class="sound" type="button" aria-pressed="false"><i></i><span>Audio off</span></button>
+      </div>
+      <div class="case-info rv">
+        <dl class="facts">
+          <div><dt class="label">Cliente</dt><dd>OpenEconomics, per APA</dd></div>
+          <div><dt class="label">Dati</dt><dd>Focus OpenEconomics nell'8° Rapporto sulla Produzione Audiovisiva Nazionale</dd></div>
+          <div><dt class="label">Formato</dt><dd>Verticale 9:16, 17,5 secondi</dd></div>
+          <div><dt class="label">Audio</dt><dd>Musica incalzante con un vero finale, senza voce</dd></div>
+        </dl>
+        <p class="case-lead">Il microdrama è un formato nato per i social, ma lo studio parla di cinema. Per questo ogni ripresa è illuminata come un film: il set, lo smartphone, il feed, la TV in una stanza buia. Ogni dato entra sul colpo della musica.</p>
+        <p class="roles"><b>AI:</b> genera le riprese dello smartphone, del feed e della TV, la musica e il codice che monta grafica e girato a tempo. <b>Io:</b> scrivo i prompt di ogni scena, adatto lo storyboard del cliente, disegno la grafica con il design system OpenEconomics e decido i tagli sulla musica.</p>
+        <ul class="notes">
+          <li><span class="label acc">Riuso</span>La ripresa del set viene dal video Audiovisivo: una cornice 16:9 si allarga e ruota fino al verticale.</li>
+          <li><span class="label acc">Crescita</span>Il mercato non compare come numero fisso: il 2025 entra per primo, poi il 14 conta da 11 a 14.</li>
+          <li><span class="label acc">Prompt</span>La prima versione del prompt della TV è stata bloccata dalla moderazione: l'ho riscritta descrivendo la luce e la stanza.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sb-head rv">
+      <div><span class="label acc">(Storyboard)</span><h3>Sei scene, dal set al logo.</h3></div>
+      <div class="sb-nav"><button type="button" class="sb-prev" aria-label="Scena precedente">←</button><button type="button" class="sb-next" aria-label="Scena successiva">→</button></div>
+    </div>
+    <div class="sb" data-cursor="Trascina" data-lenis-prevent-wheel>
+      <div class="sb-track">
+          <article class="beat"><div class="beat-img"><img src="assets/img/apa-01.webp" alt="" loading="lazy"><span class="tc">0:00</span></div><p class="label acc">Apertura · Il set</p><p class="beat-on">L'audiovisivo cambia formato</p><p class="beat-vis">Troupe e cinepresa su un set: la cornice 16:9 ruota fino al 9:16.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/apa-02.webp" alt="" loading="lazy"><span class="tc">0:03</span></div><p class="label acc">Dato 1 · Mercato globale</p><p class="beat-on">Da 11 a 14 miliardi $ entro fine 2026</p><p class="beat-vis">Mani che tengono uno smartphone: sullo schermo un dialogo girato come un film.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/apa-03.webp" alt="" loading="lazy"><span class="tc">0:06</span></div><p class="label acc">Dato 2 · Download</p><p class="beat-on">+140% di download delle app</p><p class="beat-vis">Un pollice scorre un feed fatto di scene da cinema.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/apa-04.webp" alt="" loading="lazy"><span class="tc">0:10</span></div><p class="label acc">Dato 3 · Top 30 in Italia</p><p class="beat-on">13 app su 30 per incassi</p><p class="beat-vis">Una TV accesa in una stanza buia, la camera si avvicina lenta.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/apa-05.webp" alt="" loading="lazy"><span class="tc">0:13</span></div><p class="label acc">Invito</p><p class="beat-on">Scopri l'analisi completa nell'8° Rapporto APA</p><p class="beat-vis">Le immagini sfumano nel viola pieno.</p></article>
+          <article class="beat"><div class="beat-img"><img src="assets/img/apa-06.webp" alt="" loading="lazy"><span class="tc">0:15</span></div><p class="label acc">Chiusura</p><p class="beat-on">We measure what really matters</p><p class="beat-vis">Il logo entra sull'ultimo colpo della musica.</p></article>
+      </div>
+    </div>
+  </section>
+
   <!-- CASO STUDIO: DROP -->
-  <section class="sec case" id="drop" data-theme="dark">
+  <section class="sec case" id="drop" data-theme="light">
     <div class="sec-head rv"><span class="label acc">Caso studio · Drop</span><span class="label">(Brand book · Design system · Sito)</span></div>
     <h2 class="sec-title rv">Drop: brand book, design system e sito, progettati con l'AI.</h2>
     <div class="mock-hero">
@@ -682,7 +734,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- CASO STUDIO: PRODUTTORI ARBOREA -->
-  <section class="sec case" id="arborea" data-theme="light">
+  <section class="sec case" id="arborea" data-theme="dark">
     <div class="sec-head rv"><span class="label acc">Caso studio · Produttori Arborea</span><span class="label">(Design system · Schede prodotto · Video)</span></div>
     <h2 class="sec-title rv">Produttori Arborea: un design system e i template per le schede prodotto.</h2>
     <div class="mock-hero">
@@ -778,7 +830,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- CASO STUDIO: JET SET -->
-  <section class="sec case" id="jet-set" data-theme="dark">
+  <section class="sec case" id="jet-set" data-theme="light">
     <div class="sec-head rv"><span class="label acc">Caso studio · Per l'agenzia Drop</span><span class="label">(Video AI · 9:16)</span></div>
     <h2 class="sec-title rv">Acqua di Sardegna, Jet Set. Un video generato con l'AI, dalla modella al profumo.</h2>
     <div class="case-grid">
@@ -822,7 +874,7 @@ em{font-style:italic;color:var(--acc)}
   </section>
 
   <!-- METODO -->
-  <section class="sec" id="metodo" data-theme="light">
+  <section class="sec" id="metodo" data-theme="dark">
     <div class="sec-head rv"><span class="label acc">Come lavoro</span><span class="label">(04)</span></div>
     <h2 class="sec-title rv">Dove lavora l'AI e dove lavoro io.</h2>
     <div class="tiles rv">
@@ -1047,6 +1099,13 @@ em{font-style:italic;color:var(--acc)}
       if (lab !== cur) { cur = lab; reelCap.textContent = '(' + lab + ')'; }
     });
   }
+  const snd = $('.reel-sound');
+  if (reel && snd) snd.addEventListener('click', () => {
+    reel.muted = !reel.muted;
+    if (!reel.muted) reel.play().catch(() => {});
+    snd.setAttribute('aria-pressed', String(!reel.muted));
+    $('span', snd).textContent = reel.muted ? snd.dataset.off : snd.dataset.on;
+  });
 
   const exp = $('.expand'), media = $('.expand-media');
   const stmt = $('.statement');
